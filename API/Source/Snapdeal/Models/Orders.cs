@@ -11,7 +11,7 @@ namespace Snapdeal.Models
     {
         public Orders()
         {
-            OrderItems = new HashSet<OrderItems>();
+            OrderItems = new HashSet<OrderItem>();
         }
 
         public int OrderId { get; set; }
@@ -23,6 +23,6 @@ namespace Snapdeal.Models
         public virtual Customer Customer { get; set; }
         public virtual Attribute OrderStatusNavigation { get; set; }
         public virtual Payment Payment { get; set; }
-        public virtual ICollection<OrderItems> OrderItems { get; set; }
+        public virtual ICollection<OrderItem> OrderItems { get; set; }
     }
 }

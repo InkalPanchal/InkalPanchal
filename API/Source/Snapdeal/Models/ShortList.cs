@@ -11,13 +11,13 @@ namespace Snapdeal.Models
     {
         public ShortList()
         {
-            ShortListItems = new HashSet<ShortListItems>();
+            ShortListItems = new HashSet<ShortListItem>();
         }
 
         public int ShortListId { get; set; }
         public int? CustomerId { get; set; }
 
         public virtual Customer Customer { get; set; }
-        public virtual ICollection<ShortListItems> ShortListItems { get; set; }
+        public virtual ICollection<ShortListItem> ShortListItems { get; set; }
     }
 }

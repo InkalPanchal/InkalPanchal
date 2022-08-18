@@ -38,8 +38,8 @@ namespace Snapdeal.Services
             {
                 Subject = new ClaimsIdentity(new Claim[]
                 {
-                    new Claim(ClaimTypes.Name, user.UserName),
-                    //new Claim(ClaimTypes.Role, user.Role)
+                    new Claim(ClaimTypes.Email, users.EmailAddress),
+                    new Claim(ClaimTypes.Role, users.Role)
                 }),
                 Expires = DateTime.UtcNow.AddMinutes(10),
                 SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(tokenKey), SecurityAlgorithms.HmacSha256Signature)

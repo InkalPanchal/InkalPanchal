@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace Snapdeal.Controllers
 {
-    [Authorize]
+    //[Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class CategoryController : ControllerBase
@@ -27,7 +27,12 @@ namespace Snapdeal.Controllers
         [HttpGet]
         public async Task<IActionResult> Get()
         {
-            return Ok(await CategoryService.GetAll());
+            var obj = await CategoryService.GetAll();
+            if(obj != null)
+            {
+                return Ok(obj);
+            }
+            else return NotFound("Data not found.");
         }
 
         // GET api/<CategoryController>/5
@@ -35,28 +40,46 @@ namespace Snapdeal.Controllers
         [HttpGet("{id}")]
         public async Task<IActionResult> Get(int id)
         {
-            return Ok(await CategoryService.GetById(id));
+            var obj = await CategoryService.GetById(id);
+            if (obj != null)
+            {
+                return Ok(obj);
+            }
+            else return NotFound("Data not found.");
         }
 
         // POST api/<CategoryController>/addCategory
-        [HttpPost("addCategory")]
+        [HttpPost("addCategory"), Authorize(Roles = "admin")]
         public async Task<IActionResult> Post([FromBody] Category category)
         {
+            if (string.IsNullOrEmpty(category.CategoryName))
+            {
+                return BadRequest();
+            }
             return Ok(await CategoryService.Add(category));
         }
 
         // PUT api/<CategoryController>/5
-        [HttpPut("{id}")]
+        [HttpPut("{id}"), Authorize(Roles = "admin")]
         public async Task<IActionResult> Put(int id, [FromBody] Category category)
         {
             return Ok(await CategoryService.Update(id, category));
         }
 
         // DELETE api/<CategoryController>/5
-        [HttpDelete("{id}")]
+        [HttpDelete("{id}"), Authorize(Roles = "admin")]
         public async Task<IActionResult> Delete(int id)
         {
-            return Ok(await CategoryService.Delete(id));
+            var obj = await CategoryService.GetById(id);
+            if (obj != null)
+            {
+                return Ok(await CategoryService.Delete(id));
+            }
+            else
+            {
+                return NotFound("Data not exists.");
+            }
+            
         }
     }
 }

@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Snapdeal.Models;
-using Snapdeal.Repository;
+using Snapdeal.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -27,7 +27,15 @@ namespace Snapdeal.Controllers
         [HttpGet]
         public async Task<IActionResult> Get()
         {
-            return Ok(await ProductService.GetAll());
+            var obj = await ProductService.GetAll();
+            if(obj != null)
+            {
+                return Ok(obj);
+
+            }else
+            {
+                return NotFound("Data not availbale.");
+            }
         }
 
         [AllowAnonymous]
@@ -35,28 +43,47 @@ namespace Snapdeal.Controllers
         [HttpGet("{id}")]
         public async Task<IActionResult> Get(int id)
         {
-            return Ok(await ProductService.GetById(id));
+            var obj = await ProductService.GetById(id);
+            if(obj != null)
+            {
+                return Ok(obj);
+            }else
+            {
+                return NotFound("Data not available.");
+            }
         }
 
         // POST api/<ProductsController>
-        [HttpPost("addProduct")]
+        [HttpPost("addProduct"), Authorize(Roles = "admin")]
         public async Task<IActionResult> Post([FromBody] Product product )
         {
+            if (string.IsNullOrEmpty(product.ProductName))
+            {
+                return BadRequest();
+            }
             return Ok(await ProductService.Add(product));
         }
 
         // PUT api/<ProductsController>/5
-        [HttpPut("{id}")]
+        [HttpPut("{id}"), Authorize(Roles = "admin")]
         public async Task<IActionResult> Put(int id, [FromBody] Product product)
         {
             return Ok(await ProductService.Update(id,product));
         }
 
         // DELETE api/<ProductsController>/5
-        [HttpDelete("{id}")]
+        [HttpDelete("{id}"), Authorize(Roles = "admin")]
         public async Task<IActionResult> Delete(int id)
         {
-            return Ok(await ProductService.Delete(id));
+            var obj = await ProductService.GetById(id);
+            if (obj != null)
+            {
+                return Ok(await ProductService.Delete(id));
+            }
+            else
+            {
+                return NotFound("Data not exists.");
+            }
         }
     }
 }

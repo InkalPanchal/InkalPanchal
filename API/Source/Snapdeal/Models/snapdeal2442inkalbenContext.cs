@@ -25,16 +25,16 @@ namespace Snapdeal.Models
         public virtual DbSet<CartItem> CartItem { get; set; }
         public virtual DbSet<Category> Category { get; set; }
         public virtual DbSet<Customer> Customer { get; set; }
-        public virtual DbSet<CustomerAddresses> CustomerAddresses { get; set; }
+        public virtual DbSet<CustomerAddress> CustomerAddresses { get; set; }
         public virtual DbSet<MasterTable> MasterTable { get; set; }
-        public virtual DbSet<OrderItems> OrderItems { get; set; }
+        public virtual DbSet<OrderItem> OrderItems { get; set; }
         public virtual DbSet<Orders> Orders { get; set; }
         public virtual DbSet<Payment> Payment { get; set; }
         public virtual DbSet<Product> Product { get; set; }
-        public virtual DbSet<ProductAttributes> ProductAttributes { get; set; }
-        public virtual DbSet<ProductImages> ProductImages { get; set; }
+        public virtual DbSet<ProductAttribute> ProductAttributes { get; set; }
+        public virtual DbSet<ProductImage> ProductImages { get; set; }
         public virtual DbSet<ShortList> ShortList { get; set; }
-        public virtual DbSet<ShortListItems> ShortListItems { get; set; }
+        public virtual DbSet<ShortListItem> ShortListItems { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -135,7 +135,7 @@ namespace Snapdeal.Models
                 entity.Property(e => e.Role)
                     .HasMaxLength(10)
                     .IsUnicode(false)
-                    .HasDefaultValueSql("(user_name())");
+                    .HasDefaultValueSql("('user')");
 
                 entity.Property(e => e.UserName)
                     .IsRequired()
@@ -143,7 +143,7 @@ namespace Snapdeal.Models
                     .IsUnicode(false);
             });
 
-            modelBuilder.Entity<CustomerAddresses>(entity =>
+            modelBuilder.Entity<CustomerAddress>(entity =>
             {
                 entity.HasKey(e => e.AddressId)
                     .HasName("PK__Customer__091C2A1B34545A24");
@@ -197,7 +197,7 @@ namespace Snapdeal.Models
                     .IsUnicode(false);
             });
 
-            modelBuilder.Entity<OrderItems>(entity =>
+            modelBuilder.Entity<OrderItem>(entity =>
             {
                 entity.HasKey(e => e.OrderItemId)
                     .HasName("PK__OrderIte__57ED06A1A0FFAF90");
@@ -299,7 +299,7 @@ namespace Snapdeal.Models
                     .HasConstraintName("FK__Product__Product__6477ECF3");
             });
 
-            modelBuilder.Entity<ProductAttributes>(entity =>
+            modelBuilder.Entity<ProductAttribute>(entity =>
             {
                 entity.HasKey(e => e.ProductAttributeId)
                     .HasName("PK__ProductA__00CE672716B6F28D");
@@ -328,7 +328,7 @@ namespace Snapdeal.Models
                     .HasConstraintName("FK__ProductAt__SizeI__440B1D61");
             });
 
-            modelBuilder.Entity<ProductImages>(entity =>
+            modelBuilder.Entity<ProductImage>(entity =>
             {
                 entity.HasKey(e => e.ProductImageId)
                     .HasName("PK__ProductI__07B2B1D8ED4AEF19");
@@ -351,7 +351,7 @@ namespace Snapdeal.Models
                     .HasConstraintName("FK__ShortList__Custo__267ABA7A");
             });
 
-            modelBuilder.Entity<ShortListItems>(entity =>
+            modelBuilder.Entity<ShortListItem>(entity =>
             {
                 entity.HasKey(e => e.ListId)
                     .HasName("PK__ShortLis__E3832865D40E9885");
@@ -363,10 +363,10 @@ namespace Snapdeal.Models
                     .HasForeignKey(d => d.ProductId)
                     .HasConstraintName("FK__ShortList__Produ__3F466844");
 
-                entity.HasOne(d => d.ShortList)
-                    .WithMany(p => p.ShortListItems)
-                    .HasForeignKey(d => d.ShortListId)
-                    .HasConstraintName("FK__ShortList__Short__3E52440B");
+                //entity.HasOne(d => d.ShortList)
+                //    .WithMany(p => p.ShortListItems)
+                //    .HasForeignKey(d => d.ShortListId)
+                //    .HasConstraintName("FK__ShortList__Short__3E52440B");
             });
 
             OnModelCreatingPartial(modelBuilder);

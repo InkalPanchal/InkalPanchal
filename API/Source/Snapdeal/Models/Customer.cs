@@ -12,7 +12,7 @@ namespace Snapdeal.Models
         public Customer()
         {
             Cart = new HashSet<Cart>();
-            CustomerAddresses = new HashSet<CustomerAddresses>();
+            CustomerAddresses = new HashSet<CustomerAddress>();
             Orders = new HashSet<Orders>();
             ShortList = new HashSet<ShortList>();
         }
@@ -26,7 +26,7 @@ namespace Snapdeal.Models
         public string Role { get; set; }
 
         public virtual ICollection<Cart> Cart { get; set; }
-        public virtual ICollection<CustomerAddresses> CustomerAddresses { get; set; }
+        public virtual ICollection<CustomerAddress> CustomerAddresses { get; set; }
         public virtual ICollection<Orders> Orders { get; set; }
         public virtual ICollection<ShortList> ShortList { get; set; }
     }

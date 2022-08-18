@@ -1,20 +1,22 @@
 ﻿using Microsoft.EntityFrameworkCore.Internal;
 using Snapdeal.Models;
+using Snapdeal.Repository;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Snapdeal.Repository
+namespace Snapdeal.Services
 {
     public interface IProductService : IRepository<Product>
     {
-        Task<Product> Update(int id, Product product);
+        Task<int> Update(int id, Product product);
+        Task<int> Add(Product product);
     }
     public class ProductService : Repository<Product>, IProductService
     {
         public ProductService(snapdeal2442inkalbenContext dbcontext) : base(dbcontext) { }
-        public async Task<Product> Update(int id, Product product)
+        public async Task<int> Update(int id, Product product)
         {
             var obj = await base.GetById(id);
             obj.ProductId = product.ProductId;
@@ -26,7 +28,7 @@ namespace Snapdeal.Repository
             obj.Highlights = product.Highlights;
             obj.Availability = product.Availability;
             await base.Update(obj);
-            return obj;
+            return obj.ProductId;
         }
 
         public async Task<int> Add(Product product)

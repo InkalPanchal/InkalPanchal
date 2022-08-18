@@ -16,7 +16,7 @@ namespace Snapdeal.Models
 
         public int CartId { get; set; }
         public int? CustomerId { get; set; }
-        public long? SubTotal { get; set; }
+        //public long? SubTotal { get; set; }
 
         public virtual Customer Customer { get; set; }
         public virtual ICollection<CartItem> CartItem { get; set; }

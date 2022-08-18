@@ -12,10 +12,10 @@ namespace Snapdeal.Models
         public Product()
         {
             CartItem = new HashSet<CartItem>();
-            OrderItems = new HashSet<OrderItems>();
-            ProductAttributes = new HashSet<ProductAttributes>();
-            ProductImages = new HashSet<ProductImages>();
-            ShortListItems = new HashSet<ShortListItems>();
+            OrderItems = new HashSet<OrderItem>();
+            ProductAttributes = new HashSet<ProductAttribute>();
+            ProductImages = new HashSet<ProductImage>();
+            ShortListItems = new HashSet<ShortListItem>();
         }
 
         public int ProductId { get; set; }
@@ -32,9 +32,9 @@ namespace Snapdeal.Models
         public virtual Brand Brand { get; set; }
         public virtual Category ProductCategory { get; set; }
         public virtual ICollection<CartItem> CartItem { get; set; }
-        public virtual ICollection<OrderItems> OrderItems { get; set; }
-        public virtual ICollection<ProductAttributes> ProductAttributes { get; set; }
-        public virtual ICollection<ProductImages> ProductImages { get; set; }
-        public virtual ICollection<ShortListItems> ShortListItems { get; set; }
+        public virtual ICollection<OrderItem> OrderItems { get; set; }
+        public virtual ICollection<ProductAttribute> ProductAttributes { get; set; }
+        public virtual ICollection<ProductImage> ProductImages { get; set; }
+        public virtual ICollection<ShortListItem> ShortListItems { get; set; }
     }
 }

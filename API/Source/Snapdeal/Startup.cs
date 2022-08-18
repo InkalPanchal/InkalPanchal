@@ -32,6 +32,16 @@ namespace Snapdeal
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddCors(options =>
+            {
+                options.AddPolicy(
+                    name: "AllowOrigin",
+                    builder => {
+                        builder.AllowAnyOrigin()
+                                .AllowAnyMethod()
+                                .AllowAnyHeader();
+                    });
+            });
             services.AddDbContext<snapdeal2442inkalbenContext>(x => x.UseSqlServer(Configuration.GetConnectionString("conn")));
             
 
@@ -57,6 +67,9 @@ namespace Snapdeal
             services.AddSingleton<IJWTManagerRepository, JWTManagerRepository>();
             services.AddScoped<ICategoryService, CategoryService>();
             services.AddScoped<IProductService, ProductService>();
+            services.AddScoped<IBrandService, BrandService>();
+            services.AddScoped<ISignUpService, SignUpService>();
+            services.AddScoped<ICartService, CartService>();
             services.AddControllers();
             services.AddControllersWithViews().AddNewtonsoftJson(options => options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
         }
@@ -70,7 +83,7 @@ namespace Snapdeal
             }
 
             app.UseHttpsRedirection();
-
+            app.UseCors("AllowOrigin");
             app.UseRouting();
 
             app.UseAuthentication();

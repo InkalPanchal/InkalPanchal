@@ -11,12 +11,12 @@ namespace Snapdeal.Models
     {
         public Attribute()
         {
-            CustomerAddresses = new HashSet<CustomerAddresses>();
+            CustomerAddresses = new HashSet<CustomerAddress>();
             Orders = new HashSet<Orders>();
             PaymentPaymentStatusNavigation = new HashSet<Payment>();
             PaymentPaymentTypeNavigation = new HashSet<Payment>();
-            ProductAttributesColor = new HashSet<ProductAttributes>();
-            ProductAttributesSize = new HashSet<ProductAttributes>();
+            ProductAttributesColor = new HashSet<ProductAttribute>();
+            ProductAttributesSize = new HashSet<ProductAttribute>();
         }
 
         public int AttributeId { get; set; }
@@ -24,11 +24,11 @@ namespace Snapdeal.Models
         public string AttributesValue { get; set; }
 
         public virtual MasterTable Type { get; set; }
-        public virtual ICollection<CustomerAddresses> CustomerAddresses { get; set; }
+        public virtual ICollection<CustomerAddress> CustomerAddresses { get; set; }
         public virtual ICollection<Orders> Orders { get; set; }
         public virtual ICollection<Payment> PaymentPaymentStatusNavigation { get; set; }
         public virtual ICollection<Payment> PaymentPaymentTypeNavigation { get; set; }
-        public virtual ICollection<ProductAttributes> ProductAttributesColor { get; set; }
-        public virtual ICollection<ProductAttributes> ProductAttributesSize { get; set; }
+        public virtual ICollection<ProductAttribute> ProductAttributesColor { get; set; }
+        public virtual ICollection<ProductAttribute> ProductAttributesSize { get; set; }
     }
 }

@@ -1,5 +1,6 @@
 USE snapdeal-2442-inkalben;
 
+SELECT * FROM Customer
 -- CUSTOMER TABLE
 CREATE TABLE Customer
 (
@@ -11,17 +12,19 @@ CREATE TABLE Customer
 	Password VARCHAR(10),
 	PhoneNumber BIGINT,
 	DateOfBirth DATE
-)
+);
 
-CREATE TABLE User
-(
-	UserID INT PRIMARY KEY IDENTITY(1,1),
-	UserName VARCHAR(25),
-	EmailAddress NVARCHAR(50),
-	PhoneNumber BIGINT,
-	DateOfBirth DATE,
-	Role VARCHAR(10)
-)
+
+--CREATE TABLE Users
+--(
+--	UserID INT PRIMARY KEY IDENTITY(1,1),
+--	UserName VARCHAR(25),
+--	EmailAddress NVARCHAR(50),
+--	PhoneNumber BIGINT,
+--	Password VARCHAR(10),
+--	DateOfBirth DATE,
+--	Role VARCHAR(10) CHECK(Role = 'admin' OR Role = 'customer')
+--)
 
 -- Shortlist table
 CREATE TABLE ShortList (
@@ -40,7 +43,7 @@ CREATE TABLE ShortListItems (
 CREATE TABLE CustomerAddresses
 (
 	AddressID INT PRIMARY KEY IDENTITY(1,1),
-	CustomerId INT FOREIGN KEY REFERENCES Customer(CustomerID) NOT NULL,
+	UserId INT FOREIGN KEY REFERENCES Customer(CustomerID) NOT NULL,
 	CustomerName VARCHAR(25) NOT NULL,
 	AddressLine VARCHAR(MAX) NOT NULL,
 	Pincode INT CHECK(LEN(Pincode) = 6) NOT NULL,
@@ -50,7 +53,6 @@ CREATE TABLE CustomerAddresses
 	MobileNumber BIGINT NOT NULL,
 	AddressType INT FOREIGN KEY REFERENCES Attribute(AttributeID)
 )
-
 -- Category table
 CREATE TABLE Category (
 	CategoryID INT PRIMARY KEY IDENTITY(1,1),

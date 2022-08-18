@@ -1,0 +1,22 @@
+/* #loginModal {
+    z-index: 95;
+    width: 726px;
+    height: 360px;
+    border-radius: 5px;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    background-position: 0 0;
+    margin: auto;
+    background-repeat: no-repeat;
+    background-color: #edf1f4;
+    position: absolute;
+} */
+
+.useAuthIcon {
+    background-image: url("https://i3.sdlcdn.com/img/snapdeal/sprite/userAuthSpritev3.png");
+    vertical-align: sub;
+    display: inline-block;
+}
+
