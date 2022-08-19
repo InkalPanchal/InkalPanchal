@@ -1,4 +1,3 @@
-
 <div id="login-register-modal" class="userAuthIcons">
     
     <ul class="listAuthModal list-unstyled m-5 mx-4 p-3">
@@ -20,22 +19,21 @@
     </ul>
     <div class="userAuth-card ">
         <div class="">
-
             <div class="p-0">
                 <div class="d-flex">
-                    <header class="fs-5 fw-normal">Login/Sign Up On Snapdeal</header>
+                    <header class="fs-5 fw-normal">Login On Snapdeal</header>
                     <div class="d-inline">
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-lg" viewBox="0 0 16 16">
                             <path d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8 2.146 2.854Z"/>
                         </svg>
                     </div>
                 </div>
-                <p class="py-2 my-2 mb-3 paraText">Please provide your Mobile Number or Email to Login/ Sign Up on Snapdeal</p>
-                <form class="form" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+                <p class="py-2 my-2 mb-3 paraText">Please enter verification code (OTP) sent to: {{mobileNo}}</p>
+                <form class="form">
                     <div class="loginForm border border-1 mb-3">
-                        <input type="text" formControlName="data" class="form-control py-2 " placeholder="Mobile Number/ Email" >
+                        <input type="text" class="form-control py-2 " placeholder="Mobile Number/ Email">
                     </div>
-                    <button class="text-uppercase lett btn contnuBtn w-100 fw-bold" [routerLink]="['/header/login/otp', getData.value]">Continue</button>
+                    <button class="text-uppercase lett btn contnuBtn w-100 fw-bold">Get otp</button>
                 </form>
             </div>
             
@@ -51,4 +49,3 @@
         </div>
     </div>
 </div>
-<router-outlet></router-outlet>

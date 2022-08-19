@@ -1,29 +1,14 @@
-
-<!-- <table>
-    <tbody>
-        <tr *ngFor="let item of categories">
-            <ng-container *ngIf="item.parentCategory == null">
-            <td>{{item.categoryName}} </td>
-        </ng-container>
-        </tr>
-    </tbody>
-</table> -->
-
 <div>
     <div class="">
         <ul class="list-unstyled card shadow col-sm-2">
-            <div class="text-uppercase">Top Categories</div>
-            <li></li>
-            <li></li>
-            <li></li>
-            <li></li>
-            <li></li>
-            <li></li>
-            <li></li>
-            <li></li>
-            <li></li>
-            <li></li>
-            <li></li>
+            <div class="text-uppercase" >Top Categories</div>
+            <ng-container *ngFor="let item of categories">
+                <ng-container *ngIf="item.parentCategory == null">
+
+                    <li>{{item.categoryName}} </li>
+                </ng-container>
+            </ng-container>
+            
         </ul>
     </div>
 </div>

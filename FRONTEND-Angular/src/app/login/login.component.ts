@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import { Component, Input, OnInit } from '@angular/core';
+import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
+
 
 @Component({
   selector: 'app-login',
@@ -7,10 +8,25 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-
-  constructor(public activeModal: NgbActiveModal) { }
-
+  
+  
   ngOnInit(): void {
   }
+  
+  loginForm !: FormGroup;
+  constructor(private fb: FormBuilder) {
+    this.loginForm = this.fb.group({
+      data:[]
+    })
+   }
 
+  get getData(){
+    return this.loginForm.get("data") as FormControl;
+  }
+
+  onSubmit(){
+    console.log(this.loginForm.value);
+  }
+
+  
 }

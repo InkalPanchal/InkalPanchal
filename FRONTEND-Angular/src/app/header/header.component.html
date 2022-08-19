@@ -1,37 +1,3 @@
-<!-- <div class="headerBar">
-    <section class="headerLine">
-        <span class="">Brand Waali Quality, Bazaar Waali Deal!</span>
-        <span class="">
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-        </span>
-    </section>
-    <div class="nav-container">
-        <nav class="navbar navbar-expand-lg navbar-light ">
-            <div class="container-fluid">
-                <a class="navbar-brand me-5" href="#">
-                    <img src="../../assets/Snapdeal.png" alt="" width="133" height="30">
-                </a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                    data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
-                    aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <div class="d-flex search-box-wrapper">
-                        <input class="col-xs-20 search-from-input keyword" type="search" placeholder="Search products & brands" autocomplete="off" aria-label="Search">
-                        <button class="btn btn-dark my-auto srchBtn" type="submit"><span><em class="fa-regular fa-magnifying-glass"></em></span>
-                            Search</button>
-                    </div>
-                </div>
-            </div>
-        </nav>
-    </div>
-</div> -->
-
 <div class="headerBar">
     <div class="topSection d-flex">
         <div class="me-auto">
@@ -127,8 +93,8 @@
                                             <span>If you are a new user</span> 
                                         </p>
                                         <span class="newUserRegister">Register</span>
-                                        <span class="btn loginBtn m-2 mx-3" type="button" (click)="open()">
-                                            <a href="">LOGIN</a>
+                                        <span class="btn loginBtn m-2 mx-3" type="button">
+                                            <a href="" [routerLink]="['/header/login']">LOGIN</a>
                                         </span>
                                     </div>
                                 </div>
@@ -139,3 +105,4 @@
         </div>
     </section>
 </div>
+<router-outlet></router-outlet>
