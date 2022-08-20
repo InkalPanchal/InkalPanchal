@@ -23,29 +23,24 @@
                 <div class="d-flex">
                     <header class="fs-5 fw-normal">Login On Snapdeal</header>
                     <div class="d-inline">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-lg" viewBox="0 0 16 16">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-lg" (click)="CloseDialog()" viewBox="0 0 16 16">
                             <path d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8 2.146 2.854Z"/>
                         </svg>
                     </div>
                 </div>
+                
+                <em class="otpIcon userAuthIcons"></em>
                 <p class="py-2 my-2 mb-3 paraText">Please enter verification code (OTP) sent to: {{mobileNo}}</p>
                 <form class="form">
                     <div class="loginForm border border-1 mb-3">
-                        <input type="text" class="form-control py-2 " placeholder="Mobile Number/ Email">
+                        <input type="text" class="form-control py-2 text-center" placeholder="Code">
                     </div>
-                    <button class="text-uppercase lett btn contnuBtn w-100 fw-bold">Get otp</button>
+                    <p class="text-muted text-center orLogin mb-3">Resend OTP</p>
+
+                    <button class="text-uppercase lett btn contnuBtn w-100 fw-bold">Continue</button>
                 </form>
             </div>
             
         </div> 
-        <div class="d-block mt-5">
-            <div>
-                <p class="text-muted text-center orLogin mb-3">or Login Using</p>
-                <button class="gglBtn bg-light d-flex"> 
-                    <img src="../../assets/google-color-icon.svg" class="my-auto" alt="" width="18" height="18"> 
-                    <span class="mx-auto fw-light text-muted gglText">Google</span>
-                </button>
-            </div>
-        </div>
     </div>
 </div>

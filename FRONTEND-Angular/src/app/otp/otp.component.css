@@ -100,7 +100,7 @@
 .bi-x-lg {
     display: inline !important;
     position: relative;
-    left: 20px;
+    left: 85px;
     top: 0px;
     cursor: pointer;
     opacity: 50%;
@@ -137,6 +137,22 @@
     font-size: 13px;
     opacity: 80%;
 }
-.otpIcon{
+.otpIcon {
+    -webkit-text-size-adjust: 100%;
+    -webkit-tap-highlight-color: transparent;
+    color: #000000;
+    box-sizing: border-box;
+    -webkit-font-smoothing: subpixel-antialiased;
+    padding: 0;
+    border: 0;
+    font: inherit;
+    background-image: url("../../assets/userAuthSpritev3.png");
+    vertical-align: sub;
+    height: 140px;
+    display: block;
+    width: 208px;
     background-position: -250px -365px;
+    background-repeat: no-repeat;
+    margin: 0 auto;
 }
+

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { MatDialog } from '@angular/material/dialog';
+import { LoginComponent } from '../login/login.component';
 
 
 @Component({
@@ -9,12 +10,18 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class HeaderComponent implements OnInit {
 
-  constructor(private router:ActivatedRoute, private route: Router) { }
+  constructor(private matDialog: MatDialog) { }
 
   ngOnInit(): void {
   }
-
-
+  // matDialogRef!:MatDialogRef<LoginComponent>;
+  openModal(){
+    // this.matDialogRef = 
+    this.matDialog.open(LoginComponent, {
+      "autoFocus": false
+    });
+  }
+ 
 
 
 }
