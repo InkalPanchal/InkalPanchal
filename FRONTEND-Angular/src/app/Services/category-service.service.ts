@@ -33,4 +33,8 @@ export class CategoryServiceService {
   deleteCategory(id:number){
     return this.http.delete<number>(`${this.hostUrl}${id}`, this.httpOptions);
   }
+
+  getCategoryList(){
+    return this.http.get<Array<any>>(`${this.hostUrl}categoryList`, this.httpOptions);
+  }
 }

@@ -6,8 +6,7 @@
                 <ng-container *ngIf="item.parentCategory == null">
                     <div class="d-flex">
                         <li>{{item.categoryName}} </li>
-                        <!-- <li><button type="button" name="button" class="btn btn-outline-info" (click)="editCategry(item)">Edit</button></li>
-                        <li><button type="button" name="button" class="btn btn-outline-info" (click)="deleteCategry(item.categoryId)">Delete</button></li> -->
+                        <li>{{item.parentCategory}}</li>
                     </div>
                 </ng-container>
             </ng-container>

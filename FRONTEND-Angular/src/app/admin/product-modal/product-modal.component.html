@@ -1,0 +1,22 @@
+<!-- create modal for below form -->
+<div class="d-flex">
+    <p class="text-muted w-100">Add Category</p>
+    <button class="close border-0 bg-light ms-auto rounded" (click)="closeModal()"><span>&times;</span></button>
+</div>
+<div>
+    <!-- <form [formGroup]="CategoryForm">
+
+        <label for="categoryName form-label">Category Name</label>
+        <input type="text" formControlName="categoryName" class="form-control my-2" placeholder="Enter Category"><br>
+
+        <label for="parentCategory form-label">Parent Category</label><br>
+        <select name="parentCategory" id="parentCategory" formControlName="parentCategory" class="form-select" placeholder="select">
+            <ng-container *ngFor="let item of categories">
+                <option value="{{item.categoryId}}">{{item.categoryName}}</option>
+            </ng-container>
+            
+        </select><br>
+        <button type="button" name="button" (click)="postCatgry()" class="btn btn-primary mb-2" style="line-height:20px;">Post</button>
+        <button type="button" name="button" (click)="updateCategory()" class="btn btn-primary mb-2" style="line-height:20px;">Update</button>
+    </form> -->
+</div>

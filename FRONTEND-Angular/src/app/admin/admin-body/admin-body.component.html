@@ -3,7 +3,7 @@
     <div class="container">
         <div class="row">
             <div class="col-md-3">
-                <a href="" class="btn btn-primary" data-bs-target="#addPostModal" data-bs-toggle="modal">
+                <a href="" class="btn btn-primary" [routerLink]="['/admin/products']" (click)="openProductModal()">
                     <em class="fa fa-plus me-2"></em>Add Post
                 </a>
             </div>

@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { MatDialog } from '@angular/material/dialog';
 import { CategoryServiceService } from 'src/app/Services/category-service.service';
+import { CategoriesComponent } from '../../categories/categories.component';
 
 @Component({
   selector: 'app-category-list',
@@ -9,7 +11,7 @@ import { CategoryServiceService } from 'src/app/Services/category-service.servic
 })
 export class CategoryListComponent implements OnInit {
   CategoryForm!:FormGroup
-  constructor(private categoryService: CategoryServiceService, private fb: FormBuilder) {
+  constructor(private categoryService: CategoryServiceService, private fb: FormBuilder, private matDialog: MatDialog) {
     this.CategoryForm = this.fb.group({
       categoryId:[0],
       categoryName:['', Validators.required],
@@ -19,7 +21,8 @@ export class CategoryListComponent implements OnInit {
 
   categories!:any[]
   ngOnInit(): void {
-    this.categoryService.getCategories().subscribe(p=>this.categories = p);
+    // this.categoryService.getCategories().subscribe(p=>this.categories = p);
+    this.categoryService.getCategoryList().subscribe(p=>this.categories=p);
   }
 
   categry!:any
@@ -34,6 +37,10 @@ export class CategoryListComponent implements OnInit {
   }
 
   editCategry(category:any){
+    this.matDialog.open(CategoriesComponent, {
+      "width":"800px",
+      "autoFocus": false
+    });
     this.CategoryForm.setValue(category);
   }
 

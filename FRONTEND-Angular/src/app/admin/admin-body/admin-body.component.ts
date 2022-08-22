@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CategoriesComponent } from '../categories/categories.component';
+import { ProductModalComponent } from '../product-modal/product-modal.component';
 
 @Component({
   selector: 'app-admin-body',
@@ -20,5 +21,12 @@ export class AdminBodyComponent implements OnInit {
       "width":"800px",
       "autoFocus": false
     });
+  }
+
+  openProductModal(){
+    this.matDialog.open(ProductModalComponent, {
+      "width":"900px",
+      "autoFocus":false
+    })
   }
 }

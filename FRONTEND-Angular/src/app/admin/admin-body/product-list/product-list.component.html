@@ -1,34 +1,40 @@
+
 <section class="h-50 ">
     <div class="container">
         <div class="row">
             <div class="col">
                 <div class="card " >
                     <div class="card-header">
-                        <h4>Latest Categories</h4>
+                        <h4>Products</h4>
                     </div>
                     <table class="table table-striped">
                         <caption></caption>
                         <thead class="position-sticky ">
                          <tr>
                              <th>#</th>
-                             <th>Category</th>
-                             <th>ParentCategory</th>
-                             <th>edit</th>
-                             <th>delete</th>
+                             <th>productName</th>
+                             <th>productPrice</th>
+                             <th>availability</th>
+                             <th>quantity</th>
+                             <th>highlights</th>
+                             <th>productCategoryId</th>
+                             <th>brandId</th>
                          </tr>
                         </thead>
                             <tbody>
-                                    <tr *ngFor="let item of categories" >
-                                        <td>{{item.categoryId}}</td>
-                                        <td>{{item.categoryName}}</td>
-                                        <td>{{item.parentCategory}}</td>
-                                        <td><button type="button" name="button" class="btn btn-outline-info" (click)="editCategry(item)" [routerLink]="['/admin/categories']">Edit</button></td>
-                                        <td><button type="button" name="button" class="btn btn-outline-info" (click)="deleteCategry(item.categoryId)">Delete</button></td>
-                                     </tr>
-                                
-                                
+                                <tr *ngFor="let item of products" >
+                                    <td>{{item.productId}}</td>
+                                    <td>{{item.productName}}</td>
+                                    <td>{{item.productPrice}}</td>
+                                    <td>{{item.availability}}</td>
+                                    <td>{{item.quantity}}</td>
+                                    <td>{{item.highlights}}</td>
+                                    <td>{{item.productCategoryId}}</td>
+                                    <td>{{item.brandId}}</td>
+                                    <!-- <td><button type="button" name="button" class="btn btn-outline-info" (click)="editCategry(item)">Edit</button></td>
+                                    <td><button type="button" name="button" class="btn btn-outline-info" (click)="deleteCategry(item.categoryId)">Delete</button></td> -->
+                                </tr>
                             </tbody>
-                     
                     </table>
                     <nav class="ms-4 sticky-bottom" aria-label="" >
                         <ul class="pagination">
@@ -41,11 +47,10 @@
                              <li class="page-item"><a href="#" class="page-link">3</a></li>
                              <li class="page-item"><a href="#" class="page-link">Next</a></li>
                         </ul>
-                    </nav>
+                    </nav> 
                 </div>
             </div>
             
         </div>
     </div>
 </section>
-<router-outlet></router-outlet>
