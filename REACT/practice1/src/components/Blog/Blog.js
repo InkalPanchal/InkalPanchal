@@ -4,14 +4,15 @@ import React from 'react';
 function Blog(props){
 
   return (
-   <div className='d-flex'>
-     <div className='mx-2'>
-      <ul className='list-unstyled'>
+   <div className=''>
+     <div className='mx-2 '>
+      Title: <ul className='list-unstyled d-flex '>
         {props.posts.map((post)=>
-        <li key={post.id}>{post.title}</li>)}
+        <li key={post.id} className="mx-2">{post.title}</li>) }
       </ul>
      </div>
    <div>
+    Title and content:
       {
         props.posts.map((post)=>
         <div key={post.id}>

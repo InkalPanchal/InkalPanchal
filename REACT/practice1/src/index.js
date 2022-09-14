@@ -1,14 +1,38 @@
 import React from 'react';
+
 import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './components/App/App';
 import reportWebVitals from './reportWebVitals';
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css'
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import NumberList from './components/NumberList/NumberList';
+import  Post  from './components/Post/Post';
+import ControlledComponent from './components/ControlledComponent/ControlledComponent';
+import UncontrolledComponent from './components/UncontrolledComponent/UncontrolledComponent';
+import HooksExample from './components/HooksExample/HooksExample';
+import Item from './components/Item/Item';
+import Posts from './components/Postscomponent/component';
+
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
+
 root.render(
   <React.StrictMode>
-    <App className=""/>
+    <BrowserRouter>
+    <Routes>
+      <Route path='/' element={ <App /> }>
+        <Route path='listsandkeys' element={ <NumberList /> }>
+          <Route path='item/:id' element={<Item />}/>
+        </Route>
+        <Route path='post' element={ <Post /> }></Route>
+        <Route path='controlled' element={ <ControlledComponent /> }></Route>
+        <Route path='uncontrolled' element={ <UncontrolledComponent /> }></Route>
+        <Route path='hooks' element={ <HooksExample /> }></Route>
+        <Route path='getPosts' element={<Posts />}></Route>
+      </Route>
+    </Routes>
+    </BrowserRouter>
   </React.StrictMode>
 );
 

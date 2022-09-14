@@ -1,46 +1,48 @@
 import './App.css';
-import ControlledComponent from '../ControlledComponent/ControlledComponent';
-import NumberList from '../NumberList/NumberList';
-import Post from '../Post/Post';
-import UncontrolledComponent from '../UncontrolledComponent/UncontrolledComponent';
-import HooksExample from './../HooksExample/HooksExample';
+import { NavLink, Outlet } from 'react-router-dom';
+
 
 function App() {
 
-  const obj = [{
-    id: 1,
-    text: "AAA"
-  },
-  {
-    id: 2,
-    text: "BBB",
-  },
-  {
-    id: 3,
-    text: "CCC",
-  }
-  ]
+
   return (
     <div className="">
-      <h4>List and Keys</h4>
+      <nav className='border-bottom pb-2'>
+        <NavLink className='mx-2 text-decoration-none'
+          style={({ isActive }) => {
+            return { color: isActive ? "red" : "black" }
+          }}
+          to="/listsandkeys">
+          ListAndKeys
+        </NavLink> | {" "}
+        <NavLink className='mx-2 text-decoration-none'
+          style={({ isActive }) => { return { color: isActive ? "red" : "black" } }}
+          to="/post">Post (use of props and list-keys) 
+        </NavLink> | {" "}
 
-      <h5>Example1</h5>
-      <NumberList objData={obj} />
+        <NavLink className='mx-2 text-decoration-none'
+          style={({ isActive }) => { return { color: isActive ? "red" : "black" } }}
+          to="/controlled">Form: ControlledComponent
+        </NavLink> | {" "}
 
-      <h5>Example2</h5>
-      <Post />
-      <hr />
+        <NavLink className='mx-2 text-decoration-none'
+          style={({ isActive }) => { return { color: isActive ? "red" : "black" } }}
+          to="/uncontrolled">Form: Uncontrolled Component
+        </NavLink> | {" "}
 
-      <h4>Controlled Component</h4>
-      <ControlledComponent />
-      <hr />
+        <NavLink className='mx-2 text-decoration-none'
+          style={({ isActive }) => { return { color: isActive ? "red" : "black" } }}
+          to="/hooks">Hooks
+        </NavLink>
 
-      <h4>Uncontrolled Component</h4>
-      <UncontrolledComponent />
-      <hr />
+        <NavLink className='mx-2 text-decoration-none'
+          style={({ isActive }) => { return { color: isActive ? "red" : "black" } }}
+          to="/getPosts">Axios
+        </NavLink>
 
-      <h4>Hooks Example UseState</h4>
-      <HooksExample />
+      </nav>
+      <Outlet />
+
     </div>
   );
 }
