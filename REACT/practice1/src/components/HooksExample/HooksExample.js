@@ -16,8 +16,9 @@ function HooksExample(props){
       <div className='m-2'>
       {isOnline ? (
         <div>
-          Online
-          <p>You clicked {count} times</p>
+          <p>Online</p>
+          <span style={{position:'relative',zIndex:'1'}}>Count</span>
+          <p className='badge text-light border-1 bg-dark rounded' style={{position:'absolute', zIndex:'-1'}}>{count}</p><br />
           <button onClick={()=>setCount(count + 1)} className='btn btn-outline-success'>Increase count</button><br />
           <button onClick={()=> setIsOnline(!isOnline)} className="btn btn-outline-primary">Go Offline</button>
         </div>

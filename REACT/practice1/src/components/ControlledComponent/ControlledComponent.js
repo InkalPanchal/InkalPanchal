@@ -17,7 +17,7 @@ class ControlledComponent extends React.Component {
     this.state = {
       id: 1,
       name: "Inkal",
-      isGoing: true,
+      isGoing: false,
       numberOfGuests: 2
     }
     this.handleChange = this.handleChange.bind(this);
@@ -28,7 +28,7 @@ class ControlledComponent extends React.Component {
   handleChange(event) {
     let value;
     if (event.target.type === 'checkbox') {
-      value = event.target.checked;
+      value = event.target.checked
     } else {
       value = event.target.value
     }

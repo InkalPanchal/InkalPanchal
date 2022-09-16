@@ -1,0 +1,22 @@
+[
+    {
+        "Id":1,
+        "Name":"Inkal Panchal",
+        "Gender":"Female",
+        "Email":"inkal@gmail.com",
+        "PhoneNumber": 6354986381,
+        "Skills":["Angular","Dotnet","SQL"],
+        "JoiningDate": "2022-01-28",
+        "Department": "Dotnet"
+    },
+    {
+        "Id":2,
+        "Name":"Tarmi Gajera",
+        "Gender":"Female",
+        "Email":"tarmi@gmail.com",
+        "PhoneNumber": 8141694559,
+        "Skills":["Angular","Dotnet","SQL"],
+        "JoiningDate": "2022-01-29",
+        "Department": "Dotnet"
+    }
+]

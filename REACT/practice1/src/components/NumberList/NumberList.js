@@ -32,14 +32,18 @@ function NumberList(){
     <nav className='navbar'>
       <div>
         <label htmlFor="search" className='form-label me-1'>Search: </label>
-        <input type="text" className='form-control-sm' placeholder='Enter text:' value={searchParams.get("filter") || ""} onChange={(e)=>{
-          let filter = e.target.value;
-          if(filter){
-            setSearchParams({filter});
-          }else {
-            setSearchParams({});
-          }
-        }} />
+        <input 
+              type="text" 
+              className='form-control-sm' 
+              placeholder='Enter text:' 
+              value={searchParams.get("filter") || ""} 
+              onChange={(e)=>{ let filter = e.target.value;
+                              if(filter){
+                                setSearchParams({filter});
+                              }else {
+                                setSearchParams({});
+                              }}} 
+        />
       </div>
     </nav>
       <div className='mb-2'>

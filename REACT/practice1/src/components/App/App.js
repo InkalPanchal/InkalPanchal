@@ -33,11 +33,16 @@ function App() {
         <NavLink className='mx-2 text-decoration-none'
           style={({ isActive }) => { return { color: isActive ? "red" : "black" } }}
           to="/hooks">Hooks
+        </NavLink> | { " " }
+
+        <NavLink className='mx-2 text-decoration-none'
+          style={({ isActive }) => { return { color: isActive ? "red" : "black" } }}
+          to="/getPosts">Axios | { " " }
         </NavLink>
 
         <NavLink className='mx-2 text-decoration-none'
           style={({ isActive }) => { return { color: isActive ? "red" : "black" } }}
-          to="/getPosts">Axios
+          to="/login">Authentication Example | { " " }
         </NavLink>
 
       </nav>

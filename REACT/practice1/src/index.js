@@ -13,6 +13,9 @@ import UncontrolledComponent from './components/UncontrolledComponent/Uncontroll
 import HooksExample from './components/HooksExample/HooksExample';
 import Item from './components/Item/Item';
 import Posts from './components/Postscomponent/component';
+import Login from './components/logincomponent/component';
+import Data from './components/datacomponent/component';
+// import Registeration from './components/registercomponent/component';
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
@@ -30,6 +33,9 @@ root.render(
         <Route path='uncontrolled' element={ <UncontrolledComponent /> }></Route>
         <Route path='hooks' element={ <HooksExample /> }></Route>
         <Route path='getPosts' element={<Posts />}></Route>
+        <Route path='login' element={<Login />}></Route>
+        <Route path='users' element={<Data />}/>
+        {/* <Route path='register' element={<Registeration/>}></Route> */}
       </Route>
     </Routes>
     </BrowserRouter>
