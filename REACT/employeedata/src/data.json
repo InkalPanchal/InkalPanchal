@@ -5,7 +5,7 @@
         "Gender":"Female",
         "Email":"inkal@gmail.com",
         "PhoneNumber": 6354986381,
-        "Skills":["Angular","Dotnet","SQL"],
+        "Skills":["Angular", "Vue"],
         "JoiningDate": "2022-01-28",
         "Department": "Dotnet"
     },
@@ -15,7 +15,7 @@
         "Gender":"Female",
         "Email":"tarmi@gmail.com",
         "PhoneNumber": 8141694559,
-        "Skills":["Angular","Dotnet","SQL"],
+        "Skills":["Angular"],
         "JoiningDate": "2022-01-29",
         "Department": "Dotnet"
     }

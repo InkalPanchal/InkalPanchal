@@ -1,12 +1,11 @@
 
-import EmployeeData from './employeecomponent/component';
 import './App.css';
+import EmployeeData from './employeecomponent/component';
 
 function App() {
   return (
     <div className="">
-      <EmployeeData />
-    </div>
+<EmployeeData />    </div>
   );
 }
 
