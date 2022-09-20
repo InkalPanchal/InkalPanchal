@@ -71,7 +71,7 @@ export default function EmployeeData(){
         name: "Angular"
     }, {name:"Vue"}, {name:"React"}]
 
-    let gender = [{name:"Male"}, {name:"Female"}, {name:"Other"}];
+    // let gender = [{name:"Male"}, {name:"Female"}, {name:"Other"}];
     const [checkedStatus, setCheckedStatus] = useState(new Array(skills.length).fill(false))
 
     function edit(obj) {
@@ -154,16 +154,14 @@ export default function EmployeeData(){
         
     }
 
-
-    const [selectedOption, setSelectedOption] = useState();
+    let initialState = "Male"
+    const [selectedOption, setSelectedOption] = useState(initialState);
     function handleRadio(e){
-        let {name, value} = e.target;
-        console.log(`${name} ${value}`);
-        setSelectedOption((prev)=>{return {...prev,value}})
-        // console.log(emp.Gender);
-        // setEmp({...emp, Gender:selectedOption})
-        console.log(`SelectedOption ${selectedOption}`);    
-        
+        // let {value} = e.target;
+        // console.log(` ${value}`);
+        setSelectedOption(e.target.value)
+        console.log(selectedOption);
+        setEmp({...emp, Gender:e.target.value })
 
     }
     function handleSkill(indx) {
@@ -181,18 +179,23 @@ export default function EmployeeData(){
                 // return skills[index].name
                 
             }
+            // else {
+            // let idx = oldSkills.indexOf(skills[index].name);
+            // if (idx > -1) {
+            //   oldSkills.splice(index, 1);
+            // }}
             
         })
         
-        // var oldSkills = []
-        // oldSkills.push(skill);
+       
        
         console.log(oldSkills);
         setEmp({...emp, Skills:oldSkills})
       }
-    function upadte(obj) {
+
+    function update(obj){
         console.log(obj);
-    
+
         const d = data.map((value) => {
           if (value.Id === parseInt(obj.Id)) {
             return obj;
@@ -200,11 +203,13 @@ export default function EmployeeData(){
             return value;
           }
         });
-    
+
         console.log('obj', d);
         data.splice(0, data.length, ...d);
         setEmp([...data]);
-      }
+        setEmp({...emp, Id:"", Name:"", Email:"", PhoneNumber:"", Gender:"", JoiningDate:"", Department:"", Skills:""})
+    }
+
     function deleteEmp(obj) {
         console.log(obj);
         // let d = [];
@@ -221,134 +226,129 @@ export default function EmployeeData(){
     return (
         <div>
             <div className='m-3'>
-            <form onSubmit={handleSubmit.bind(this)}>
-                <div>
-                    <label htmlFor="Id">ID:</label>
+            <form onSubmit={handleSubmit.bind(this)} className='form  p-3'>
+                <div className="d-flex">
+                <div className='col-sm-1'>
+                    <label className='form-label m-1'  htmlFor="Id">ID:</label>
                 </div>
                 <div>
-                    <input 
+                    <input className='form-control-sm m-1' 
                         type="number" 
                         name='Id'
                         value={emp.Id}
                         onChange={handleChange}           
                     />
                 </div>
+                </div>
                 <span className="text-danger">{errors.Id}</span>
-                <div>
+                <div className="d-flex">
+                <div className='col-sm-1'>
                     <label htmlFor="Name">Name:</label>
                 </div>
                 <div>  
-                    <input 
+                    <input className='form-control-sm m-1' 
                         type="text" 
                         name='Name'
                         value={emp.Name}
                         onChange={handleChange}
                     />
                 </div>
+                </div>
                 <span className="text-danger">{errors.Name}</span>
-                <div>
+                <div className="d-flex">
+                <div className='col-sm-1'>
                     <label htmlFor="Gender">Gender:</label>
                 </div>
-                <div>
-                    <input 
+                <div name="Gender">
+                <input className='me-1' 
                         type="radio"  
-                        name='Gender'
                         value="Male"
-                        checked={selectedOption === "Male"}
-                        onChange={()=>handleRadio}
+                        checked={selectedOption === 'Male'}
+                        onChange={handleRadio}
                     />Male {" "}
                         
-                    <input 
+                    <input className='me-1' 
                         type="radio"  
-                        name='Gender'
                         value="Female"
-                        checked={selectedOption === "Female"}
+                        checked={selectedOption === 'Female'}
                         onChange={handleRadio}
                     />Female {" "}
                         
-                    <input 
+                    <input className='me-1' 
                         type="radio"  
-                        name='Gender'
                         value="Other"
-                        checked={selectedOption === "Other"}
+                        checked={selectedOption === 'Other'}
                         onChange={handleRadio}
                     />Other {" "}
                 </div> 
+                </div>
                         
-                {/* {gender.map(({name}, index)=>{
-                    return (
-                        <div key={index}>
-                            <input 
-                                type="radio"  
-                                name='Gender'
-                                value={name}
-                                checked={checkedRadio[index]}
-                                onChange={()=>{return handleRadio(index)}}
-                            />
-                            <label htmlFor="">{name} </label>                        
-                            
-                        </div>
-                    )
-                })
-
-                } */}
                 <span className="text-danger">{errors.Gender}</span>
-                <div>
+                <div className="d-flex">
+                <div className='col-sm-1'>
                     <label htmlFor="Email">Email:</label>
                 </div>
                 <div>
-                    <input 
+                    <input className='form-control-sm m-1' 
                         type="email"
                         name='Email' 
                         value={emp.Email}
                         onChange={handleChange}   
                     />
                 </div>
+                </div>
                 <span className="text-danger">{errors.Email}</span>
-                <div>
-                    <label htmlFor="Phonenumber">PhoneNumber:</label>
+                <div className="d-flex">
+                <div className='col-sm-1'> 
+                    <label className='form-label m-1'  htmlFor="Phonenumber">PhoneNumber:</label>
                 </div>
                 <div>
-                    <input type="number" name="PhoneNumber" id="" value={emp.PhoneNumber} onChange={handleChange} />
+                    <input className='form-control-sm m-1' type="number" name="PhoneNumber" id="" value={emp.PhoneNumber} onChange={handleChange} />
+                </div>
                 </div>
                 <span className="text-danger">{errors.PhoneNumber}</span>
                 <div>
-              <label htmlFor="Skills">Skills</label>
             </div>
+            <div className="d-flex">
+            <label className='form-label m-1 col-sm-1' htmlFor="Skills">Skills</label>
 
             {skills.map(({name},index)=>{
                 return (
                     <div key={index}>
-                        <input id='skill'
+                        <input className='me-2' id='skill'
                             type="checkbox"
                             name="Skills"
                             value={name}
                             checked={checkedStatus[index]}
                             onChange={()=>{return handleSkill(index)}}
                         />
-                        <label htmlFor="">{name}</label>
+                        <label className='form-label me-1'  htmlFor="">{name}</label>
                     </div>
                 )
             })}
+            </div>
             <span className="text-danger">{errors.Skills}</span>
-            {/* {checkedStatus} */}
-            <div>
-                <label htmlFor="date">Joining Date:</label>
+            
+            <div className="d-flex">
+            <div className='col-sm-1'>
+                <label className='form-label m-1'  htmlFor="date">Joining Date:</label>
             </div>
             <div>
-                <input 
+                <input className='form-control-sm m-1' 
                     type="date" 
                     name='JoiningDate'
                     value={emp.JoiningDate}
                     onChange={handleChange}
                 />
             </div>
+            </div>
             <span className="text-danger">{errors.JoiningDate}</span>
-            <div>
-                <label htmlFor="department">Department</label>
+            <div className="d-flex">
+            <div className='col-sm-1'>
+                <label className='form-label m-1'  htmlFor="department">Department</label>
             </div>
             <div>
-                <select name="Department" value={emp.Department} id="Department" onChange={handleChange}>
+                <select name="Department" value={emp.Department} className="form-select-sm my-1 ms-1" id="Department" onChange={handleChange}>
                     <option value="Dotnet">Dotnet</option>
                     <option value="Node/React">Node/React</option>
                     <option value="PHP">PHP</option>
@@ -356,14 +356,18 @@ export default function EmployeeData(){
                     <option value="Sales">Sales</option>
                 </select>
             </div>
+            </div>
             <span className="text-danger">{errors.Department}</span>
             <div>
-                <input type="submit" value="submit" disabled={isValid}/>
+                <input type="submit" value="submit" className='btn btn-outline-primary my-2' disabled={isValid}/>
             </div>
             </form>
+            <div>
+            <button onClick={update.bind(this, emp)} className="btn btn-outline-secondary ms-3">Update</button>
 
-            <br />
-            <button onClick={upadte.bind(this, emp)}>Update</button>
+            </div>
+
+            
         </div>
         
         <div>
@@ -382,22 +386,22 @@ export default function EmployeeData(){
                 </thead>
                 <tbody>
 
-                {data.map((d)=> {return (
-                    <tr key={d.Id}>
+                {data.map((d,index)=> {return (
+                    <tr key={index}>
                         <td>{d.Id}</td>
                         <td>{d.Name}</td>
                         <td>{d.Email}</td>
                         <td>{d.Gender}</td>
                         <td>{d.PhoneNumber}</td>
-                        {/* <td>{d.Skills + ','}</td> */}
-                        <td>{d.Skills.length > 0 ? d.Skills.join(", ") : d.Skills + ','}</td>
+                        <td>{d.Skills + ','}</td>
+                        {/* <td>{d.Skills.length > 0 ? d.Skills.join(", ") : d.Skills + ','}</td> */}
                         <td>{d.Department}</td>
                         <td>{d.JoiningDate}</td>
                         <td>
-                            <button onClick={edit.bind(this, d)}>Edit</button>
+                            <button onClick={edit.bind(this, d)} className="btn btn-outline-primary">Edit</button>
                         </td>
                         <td>
-                            <button onClick={deleteEmp.bind(this, d)}>Delete</button>
+                            <button onClick={deleteEmp.bind(this, d)} className="btn btn-outline-primary">Delete</button>
                         </td>
                     </tr>
                 )})}
