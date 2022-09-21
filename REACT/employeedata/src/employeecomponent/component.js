@@ -73,8 +73,10 @@ export default function EmployeeData(){
 
     // let gender = [{name:"Male"}, {name:"Female"}, {name:"Other"}];
     const [checkedStatus, setCheckedStatus] = useState(new Array(skills.length).fill(false))
-
+    let [showBtn, setShowBtn] = useState(true);
     function edit(obj) {
+        setShowBtn(false);
+        setInValid(true);
         console.log('edit', obj);
         let {
           Id,
@@ -97,7 +99,7 @@ export default function EmployeeData(){
           JoiningDate: JoiningDate,
           Department: Department,
         });
-        
+        setSelectedOption(obj.Gender);
         // console.log(`${checkedStatus}`);    
         let handleCheck = checkedStatus.map((item, indx)=>{
             // console.log(`status ${item} ${indx}`)
@@ -113,7 +115,9 @@ export default function EmployeeData(){
     // handlesubmit method call after form submitted
     
     function handleSubmit(e) {
+        // setShowBtn(true);
         e.preventDefault();
+      
         const employee = emp;
         let validationErrors = {};
         
@@ -133,7 +137,9 @@ export default function EmployeeData(){
         data.push(emp);
         setEmp({});
         e.target.reset();
-        // setCheckedStatus(false)
+        setSelectedOption(null);
+        setCheckedStatus(checkedStatus.map((value)=>{return value === true ? false : value }))
+        
     }
     let [isValid, setInValid ] = useState(true);
     function handleChange(e){
@@ -154,8 +160,8 @@ export default function EmployeeData(){
         
     }
 
-    let initialState = "Male"
-    const [selectedOption, setSelectedOption] = useState(initialState);
+    // let initialState = "Male"s
+    const [selectedOption, setSelectedOption] = useState(null);
     function handleRadio(e){
         // let {value} = e.target;
         // console.log(` ${value}`);
@@ -193,21 +199,37 @@ export default function EmployeeData(){
         setEmp({...emp, Skills:oldSkills})
       }
 
+    
     function update(obj){
-        console.log(obj);
+        
+        
+        console.log('obj', obj);
 
-        const d = data.map((value) => {
-          if (value.Id === parseInt(obj.Id)) {
-            return obj;
-          } else {
-            return value;
-          }
-        });
+        // const d = data.map((value, index) => {
+        //   if (index-1 === parseInt(obj.Id)) {
+        //     return obj;
+        //   } else {
+        //     return value;
+        //   }
+        // });
+        let d =[];
+        d = data.map((value)=>{
+            return value.Id === obj.Id ? obj : value;
+        })
+        console.log('d', d);
+        // d.splice(, d.length, obj)
+        // let dt = d.find((x)=>x.Id === obj.Id ? x.Name = obj.Name, x. : x);
+        // console.log(dt);
+        // data.splice(0, data.length, "")
 
-        console.log('obj', d);
         data.splice(0, data.length, ...d);
+        // console.log(data);
         setEmp([...data]);
         setEmp({...emp, Id:"", Name:"", Email:"", PhoneNumber:"", Gender:"", JoiningDate:"", Department:"", Skills:""})
+
+        setCheckedStatus(checkedStatus.map((value)=>{return value === true ? false : value }))
+        // setCheckedStatus(false)
+        setSelectedOption("")
     }
 
     function deleteEmp(obj) {
@@ -242,7 +264,7 @@ export default function EmployeeData(){
                 </div>
                 <span className="text-danger">{errors.Id}</span>
                 <div className="d-flex">
-                <div className='col-sm-1'>
+                <div className='col-sm-1 ms-1'>
                     <label htmlFor="Name">Name:</label>
                 </div>
                 <div>  
@@ -256,7 +278,7 @@ export default function EmployeeData(){
                 </div>
                 <span className="text-danger">{errors.Name}</span>
                 <div className="d-flex">
-                <div className='col-sm-1'>
+                <div className='col-sm-1 mx-1'>
                     <label htmlFor="Gender">Gender:</label>
                 </div>
                 <div name="Gender">
@@ -285,7 +307,7 @@ export default function EmployeeData(){
                         
                 <span className="text-danger">{errors.Gender}</span>
                 <div className="d-flex">
-                <div className='col-sm-1'>
+                <div className='col-sm-1 mt-2 mx-1'>
                     <label htmlFor="Email">Email:</label>
                 </div>
                 <div>
@@ -349,6 +371,7 @@ export default function EmployeeData(){
             </div>
             <div>
                 <select name="Department" value={emp.Department} className="form-select-sm my-1 ms-1" id="Department" onChange={handleChange}>
+                    <option value="0">--Select--</option>
                     <option value="Dotnet">Dotnet</option>
                     <option value="Node/React">Node/React</option>
                     <option value="PHP">PHP</option>
@@ -358,7 +381,7 @@ export default function EmployeeData(){
             </div>
             </div>
             <span className="text-danger">{errors.Department}</span>
-            <div>
+            <div style={{display: showBtn ? 'block' : 'hidden'}} >
                 <input type="submit" value="submit" className='btn btn-outline-primary my-2' disabled={isValid}/>
             </div>
             </form>
