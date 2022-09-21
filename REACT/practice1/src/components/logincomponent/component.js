@@ -39,16 +39,21 @@ export default function Login(){
         password:""
     })
     let navigate = useNavigate();
+    
     function handleSubmit(e){
         e.preventDefault();
         authService.login(userObj)
         .then((res)=>{
             console.log(res.message);
             if(res.message !== 'success'){
-                navigate('/register')
+                // navigate('/register')
+                alert("Invalid email/password");
             }
             else {
+                
+                alert("Successfully logged in.")
                 navigate('/users')
+
             }
         });
     }

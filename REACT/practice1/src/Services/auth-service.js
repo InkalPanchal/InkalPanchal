@@ -35,12 +35,10 @@ class AuthService extends React.Component{
                 },
                 observe:'response'
             });
-        if (res.data.Token) {
-            
-            console.log(res.data);
-        }else {
-            
+        if (res.data.data.Token) {
             localStorage.setItem("user", JSON.stringify(res.data));
+        }else {
+            console.log(res.data);
         }
         return res.data;
         

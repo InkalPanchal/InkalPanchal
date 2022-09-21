@@ -1,5 +1,4 @@
 import React from 'react';
-
 import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './components/App/App';
@@ -15,9 +14,10 @@ import Item from './components/Item/Item';
 import Posts from './components/Postscomponent/component';
 import Login from './components/logincomponent/component';
 import Data from './components/datacomponent/component';
-// import Registeration from './components/registercomponent/component';
+import Registeration from './components/registercomponent/component';
+// import GuradedRoute from './components/GurdedRouteComponent/GuardedRoute'
 
-
+// let isAuthenticated = localStorage.getItem("user") ? true : false;
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
 root.render(
@@ -34,8 +34,15 @@ root.render(
         <Route path='hooks' element={ <HooksExample /> }></Route>
         <Route path='getPosts' element={<Posts />}></Route>
         <Route path='login' element={<Login />}></Route>
+        {/* {localStorage.getItem("user") &&
         <Route path='users' element={<Data />}/>
-        {/* <Route path='register' element={<Registeration/>}></Route> */}
+        } */}
+        
+        <Route path='users' element={<Data />}/>
+        
+
+        {/* <GuradedRoute path='users' component={Data} auth={isAuthenticated} /> */}
+        <Route path='register' element={<Registeration/>}></Route>
       </Route>
     </Routes>
     </BrowserRouter>

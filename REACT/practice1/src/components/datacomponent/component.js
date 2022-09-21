@@ -4,6 +4,7 @@ import axios from 'axios'
 import apiUrl from '../../api';
 import { useState, useEffect } from 'react';
 import AuthHeader from './../../Services/auth-header';
+import { useNavigate } from 'react-router-dom';
 
 const url = apiUrl.apiUrl;
 
@@ -18,9 +19,13 @@ export default function Data(){
     const [searchParams, setSearchParams] = useState(1);
     
     const headers = AuthHeader();
-    
+    let navigate = useNavigate();
     async function getAllUser(){
-        await axios.get(`${url}users`, {params:{'page':searchParams},headers: headers, observe: 'response'} )
+        if(!localStorage.getItem("user")){
+            // alert("Login first")
+            navigate('/login')
+        }
+        await axios.get(`${url}users`, {params:{'page':searchParams}, headers: headers, observe: 'response'} )
         .then((res)=>{ 
             setUserObj(res.data);
         }
@@ -47,13 +52,13 @@ export default function Data(){
                     <label htmlFor="search">Search:</label>
                     <input 
                         type="text"
-                        className='form-control-sm'    
+                        className='form-control-sm mx-2'    
                         placeholder='Enter page number'
                         value={searchParams}
                         onChange={handleChange}    
             
                     />
-                    <input type="submit" value="submit" />
+                    <input type="submit" value="submit" className='btn btn-primary mx-2' />
                     </form>
                 </div>
             </nav>
