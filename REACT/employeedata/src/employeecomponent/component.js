@@ -264,8 +264,8 @@ export default function EmployeeData(){
                 </div>
                 <span className="text-danger">{errors.Id}</span>
                 <div className="d-flex">
-                <div className='col-sm-1 ms-1'>
-                    <label htmlFor="Name">Name:</label>
+                <div className='col-sm-1 '>
+                    <label htmlFor="Name" className='ms-1'>Name:</label>
                 </div>
                 <div>  
                     <input className='form-control-sm m-1' 
@@ -278,8 +278,8 @@ export default function EmployeeData(){
                 </div>
                 <span className="text-danger">{errors.Name}</span>
                 <div className="d-flex">
-                <div className='col-sm-1 mx-1'>
-                    <label htmlFor="Gender">Gender:</label>
+                <div className='col-sm-1'>
+                    <label htmlFor="Gender" className='ms-1'>Gender:</label>
                 </div>
                 <div name="Gender">
                 <input className='me-1' 
@@ -307,8 +307,8 @@ export default function EmployeeData(){
                         
                 <span className="text-danger">{errors.Gender}</span>
                 <div className="d-flex">
-                <div className='col-sm-1 mt-2 mx-1'>
-                    <label htmlFor="Email">Email:</label>
+                <div className='col-sm-1 mt-2'>
+                    <label htmlFor="Email" className='ms-1'>Email:</label>
                 </div>
                 <div>
                     <input className='form-control-sm m-1' 
