@@ -1,0 +1,32 @@
+CREATE TABLE users (
+	UserId SERIAL PRIMARY KEY,
+	EmailAddress VARCHAR(50) NOT NULL,
+	Password VARCHAR(12) NOT NULL,
+	Role VARCHAR(10)
+);
+
+CREATE TABLE Customer (
+	CustomerID INT PRIMARY KEY GENERATED ALWAYS AS IDENTITY (START WITH 1 INCREMENT by 1),
+	CustomerName VARCHAR(20),
+	EmailAddress VARCHAR(50),
+	PhoneNumber INT,
+	Gender VARCHAR(10),
+	BirthDate DATE,
+	Address VARCHAR(255),
+    AddressType VARCHAR(20) CHECK(AddressType = 'Home' or AddressType = 'Office')
+);
+
+CREATE TABLE CustomerAddresses (
+	AddressId INT PRIMARY KEY ADD GENERATED ALWAYS AS IDENTITY (START WITH 1 INCREMENT BY 1) ,
+	CustomerId INT FOREIGN KEY REFERENCES Customer(CustomerID),
+	Address VARCHAR(255)
+);
+
+
+SELECT * FROM users;
+
+ALTER TABLE users 
+ALTER COLUMN userid ADD GENERATED ALWAYS AS IDENTITY (START WITH 1 INCREMENT by 1);
+
+
+drop table users;
