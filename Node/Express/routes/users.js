@@ -1,9 +1,14 @@
 var express = require('express');
 var router = express.Router();
 
+
+
 /* GET users listing. */
 router.get('/', function(req, res, next) {
-  res.send('Hello user!');
+  res.json({
+    'status':true,
+    "payload":"hello user!"
+  })
 });
 
 router.get('/example/a', (req, res, next)=>{
@@ -45,5 +50,10 @@ router.get('/file/Download', (req,res)=>{
   res.download('./hello.txt', (err)=>{if(err)console.log(err);});
 });
 
-
+router.post('/save', (req,res)=>{
+  res.json({
+    'status':true,
+    'payload':req.body
+  })
+})
 module.exports = router;
