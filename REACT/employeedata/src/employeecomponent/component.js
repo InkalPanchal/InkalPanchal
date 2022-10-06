@@ -130,7 +130,6 @@ export default function EmployeeData(){
         });
         if(Object.keys(validationErrors).length > 0){
             setErrors({...errors, validationErrors})
-            
             return;
         }
         

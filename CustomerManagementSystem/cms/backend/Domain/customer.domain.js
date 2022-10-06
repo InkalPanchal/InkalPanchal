@@ -5,9 +5,10 @@ class CustomerDomain {
     async getAllCutomers(req, res) {
         // let result = (await pool.query('SELECT * FROM Customer')).rows;
         // res.status(200).json(result);
-        pool.query('SELECT * FROM Customer', (err, result)=>{
+        pool.query('SELECT customerid, customername, emailaddress, phonenumber, gender, birthdate, streetaddress, city, state, country, pincode, addresstype FROM Customer', (err, result)=>{
             if(err) throw err;
             if(result.rowCount > 0){
+                console.log('result', result.rows);
                 res.status(200).json(result.rows);
             }else {
                 res.status(404).json("Data is empty.")
@@ -24,11 +25,11 @@ class CustomerDomain {
 
         // console.log("customerssss", customers);
         const text = `
-          INSERT INTO Customer (customername, emailaddress, phonenumber, gender, birthdate, address, addresstype)
-          VALUES ($1, $2, $3, $4, $5, $6, $7)
+          INSERT INTO Customer (customername, emailaddress, phonenumber, gender, birthdate, streetaddress, city, state, country, pincode, addresstype)
+          VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11)
           RETURNING *
         `;
-        const values = [customer.customername, customer.emailaddress, customer.phonenumber, customer.gender, customer.birthdate, customer.address, customer.addresstype ];
+        const values = [customer.customername, customer.emailaddress, customer.phonenumber, customer.gender, customer.birthdate, customer.streetaddress, customer.city, customer.state, customer.country, customer.pincode, customer.addresstype ];
         let checkExists = customers.find(x => x.emailaddress === customer.emailaddress || customers.phonenumber === customer.phonenumber)
         // console.log("checkExists", checkExists);
         if(checkExists === undefined){
@@ -65,8 +66,8 @@ class CustomerDomain {
     }
 
     async updateCustomer(customer, id, res) {
-        const text = `UPDATE Customer SET customername = $1, emailaddress = $2, gender = $3, phonenumber = $4, birthdate = $5, address = $6, addresstype = $7 WHERE customerid = $8`;
-        const values = [customer.customername, customer.emailaddress, customer.gender, customer.phonenumber, customer.birthdate, customer.address, customer.addresstype, id];
+        const text = `UPDATE Customer SET customername = $1, emailaddress = $2, gender = $3, phonenumber = $4, birthdate = $5, streetaddress = $6, city =$7, state = $8, country = $9, pincode = $10, addresstype = $11 WHERE customerid = $12`;
+        const values = [customer.customername, customer.emailaddress, customer.gender, customer.phonenumber, customer.birthdate, customer.streetaddress, customer.city, customer.state, customer.country, customer.pincode, customer.addresstype, id];
 
         pool.query(text, values, (err, results)=>{
             if(err) console.log(err.message);

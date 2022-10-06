@@ -10,7 +10,7 @@ router.get('/', (req,res)=>{
   customerDomain.getAllCutomers(req, res);
 })
 
-router.use(jwtVerify);
+// router.use(jwtVerify);
 
 router.get('/:id', (req, res)=>{
   customerDomain.getCustomerById(req.params.id, res);
@@ -28,8 +28,12 @@ router.post('/add',[
                        .isEmail().normalizeEmail().withMessage("Invalid email!"),
   check('phonenumber').notEmpty().withMessage('Phone number is required.')
                       .isLength({min:10, max:10}).withMessage("Phonenumber must be 10 digits long."),
-  check('address').notEmpty().withMessage('Address is required.'),
-  check('addresstype').notEmpty().withMessage('Specify addressType').isIn(['Home', 'Office']).withMessage("AddressType must be home or office."),
+  check('pincode').notEmpty().withMessage('Pincode is required.'),
+  check('streetaddress').notEmpty().withMessage('Address is required.'),
+  check('city').notEmpty().withMessage('City is required.'),
+  check('state').notEmpty().withMessage('State is required.'),
+  check('country').notEmpty().withMessage('Country is required.'),
+  check('addresstype').notEmpty().withMessage('Specify addressType').isIn(['Home', 'Office']).withMessage("AddressType must be Home or Office."),
   check('birthdate', 'invalid birthdate').optional().custom(isValidDate),
   check('gender', 'invalid gender').optional().isIn(['Male', 'Female', 'Other'])
 
@@ -45,7 +49,11 @@ router.put('/update/:id', [
   check('customername').trim().notEmpty().withMessage("Customer name is required."),
   check('emailaddress').notEmpty().withMessage("Email is required."),
   check('phonenumber').notEmpty().withMessage("Phonenumber is required."),
-  check('address').notEmpty().withMessage("Address is required."),
+  check('pincode').notEmpty().withMessage('Pincode is required.'),
+  check('streetaddress').notEmpty().withMessage('Address is required.'),
+  check('city').notEmpty().withMessage('City is required.'),
+  check('state').notEmpty().withMessage('State is required.'),
+  check('country').notEmpty().withMessage('Country is required.'),
   check('gender').notEmpty().withMessage("Address is required."),
   check('addresstype').notEmpty().withMessage("AddressType is required."),
   check('birthdate').notEmpty().withMessage("DOB is required")
