@@ -6,15 +6,18 @@ const jwtVerify = require('../Authentication/jwtverify')
 require('dotenv').config();
 let customerDomain = new CustomerDomain();
 
-router.get('/', (req,res)=>{
+router.use(jwtVerify);
+
+router.get('/', jwtVerify, (req,res)=>{
   customerDomain.getAllCutomers(req, res);
 })
 
-// router.use(jwtVerify);
 
-router.get('/:id', (req, res)=>{
+router.get('/:id',jwtVerify, (req, res)=>{
   customerDomain.getCustomerById(req.params.id, res);
-})
+});
+
+
 function isValidDate(value) {
   if (!value.match(/^\d{4}-\d{2}-\d{2}$/)) return false;
 
@@ -37,10 +40,10 @@ router.post('/add',[
   check('birthdate', 'invalid birthdate').optional().custom(isValidDate),
   check('gender', 'invalid gender').optional().isIn(['Male', 'Female', 'Other'])
 
-] ,(req, res)=>{
+], jwtVerify,(req, res)=>{
   const errors = validationResult(req);
   if(!errors.isEmpty()){
-    return res.status(404).json({error:errors.array().map((val)=>val.msg)})
+    return res.status(404).json({error:errors.array().map((val, index)=>{return val})})
   }
   customerDomain.addCustomer(req.body, res);
 })
@@ -54,18 +57,18 @@ router.put('/update/:id', [
   check('city').notEmpty().withMessage('City is required.'),
   check('state').notEmpty().withMessage('State is required.'),
   check('country').notEmpty().withMessage('Country is required.'),
-  check('gender').notEmpty().withMessage("Address is required."),
-  check('addresstype').notEmpty().withMessage("AddressType is required."),
+  check('gender').notEmpty().withMessage("Gender is required."),
+  // check('addresstype').notEmpty().withMessage("AddressType is required."),
   check('birthdate').notEmpty().withMessage("DOB is required")
-], (req, res)=>{
+],jwtVerify, (req, res)=>{
   const errors = validationResult(req);
   if(!errors.isEmpty()){
-    return res.status(404).json({error:errors.array().map((val)=>val.msg)})
+    return res.status(404).json({error:errors.array().map((val)=>val)})
   }
   customerDomain.updateCustomer(req.body, req.params.id, res);
 })
 
-router.delete('/del/:id', (req, res)=>{
+router.delete('/del/:id',jwtVerify, (req, res)=>{
   customerDomain.deleteCustomer(req.params.id, res);
 })
 

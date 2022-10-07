@@ -17,7 +17,7 @@ var app = express();
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
 
-app.use(cors({credentials: true, origin: 'http://localhost:3000', exposedHeaders: ['set-cookie', 'Date', 'ETag', 'token']}));
+app.use(cors({credentials: true, origin: 'http://localhost:3000', exposedHeaders: ['Set-Cookie','Date', 'ETag']}));
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));

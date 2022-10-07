@@ -1,23 +1,30 @@
 import { useEffect, useState } from "react";
 import CustomerService from "../Services/customerService"
-import {Link} from 'react-router-dom'
+import {Link, useNavigate} from 'react-router-dom'
 import * as Icon from 'react-bootstrap-icons'
 export default function Customer(){
 
     const customerservice = new CustomerService();
     const [customerArr, setCustomerArr] = useState([]);
 
-
-    async function getCustomerList(){
+    const navigate = useNavigate();
+    async function getCustomers(){
         await customerservice.getCustomerList().then((res)=>{
                 console.log(res.data);
                 setCustomerArr(res.data);
+        }).catch((err)=>{
+            if(err.response.status === 403){
+                // alert(err.response.data.message);
+                // alert('Redirecting to login page.')
+                navigate('/login');
+            }else if(err.response.status === 404){
+                alert(err.response.data.message.message)
+            }
         });
-        
     }
 
     useEffect(()=>{
-        getCustomerList();
+        getCustomers();
     }, []);
 
     return (
@@ -45,38 +52,41 @@ export default function Customer(){
                                 <div className="card-header">
                                     <h4>Customers</h4>
                                 </div>
+                                <div className="card-body overflow-scroll" style={{height:'500px'}}>
                                 <table className="table table-responsive table-striped col-md-9">
                                     <caption className="caption-top"></caption>
-                                    <thead className="thead-inverse table-responsive">
-                                        <tr>
+                                    <thead className="thead-inverse table-responsive ">
+                                        <tr className="">
                                             <th>#</th>
-                                            <th>Customername</th>
-                                            <th>Emailaddress</th>
+                                            <th>Name</th>
+                                            <th>Email</th>
                                             <th>Phonenumber</th> 
-                                            <th>Gender</th>
-                                            <th>Birthdate</th>
+                                            {/* <th>Gender</th>
+                                            <th>Birthdate</th> 
                                             <th>Address</th>
-                                            <th>Addresstype</th>
+                                            <th>Addresstype</th> */}
                                         </tr>
                                     </thead>
-                                    <tbody>
+                                    <tbody >
                                         {customerArr.map((val, index)=>{
                                             return (
-                                                <tr key={val.customerid}>
+                                                <tr key={val.customerid} >
                                                     <td>{index+1}</td>                      
                                                     <td>{val.customername}</td>                      
                                                     <td>{val.emailaddress}</td>                      
                                                     <td>{val.phonenumber}</td>                      
-                                                    <td>{val.gender}</td>                      
-                                                    <td>{val.birthdate.toString().slice(0,10)}</td>
-                                                    <td>{val.streetaddress}</td>                      
-                                                    <td>{val.addresstype}</td>
-                                                    <td><Link to={`/customer/editCustomer/${val.customerid}`}> <Icon.List></Icon.List>  Details</Link></td>
+                                                    {/* <td>{val.gender}</td>                      
+                                                    <td>{val.birthdate.toString().slice(0,10)}</td> */}
+                                                    {/* <td>{val.birthdate.toString()}</td> */}
+                                                    {/* <td>{val.streetaddress}</td>                      
+                                                    <td>{val.addresstype}</td> */}
+                                                    <td><Link to={`/customer/editCustomer/${val.customerid}`} className="text-decoration-none" > <Icon.List></Icon.List>  Details</Link></td>
                                                 </tr>
                                             )
                                         })}
                                     </tbody>
                                 </table>
+                                </div>
                             </div>
                         </div>
                         <div className="col-md-3">

@@ -9,43 +9,41 @@ export default class CustomerService extends React.Component {
         this.state = {
             token : ""
         }
-
+        this.headers = {
+            'Content-Type':'application/json',
+            'Access-Control-Allow-Origin' : true,
+            Authorization:localStorage.getItem('jwt')
+        }
         this.getCustomerList = this.getCustomerList.bind(this);
-        // this.addNewCustomer = this.addNewCustomer.bind(this);
-        this.setToken = this.setToken.bind(this);
+        this.GetCustomerById = this.GetCustomerById.bind(this);
+        this.UpdateCustomer = this.UpdateCustomer.bind(this);
+        this.DeleteCustomer = this.DeleteCustomer.bind(this);
+        // this.setToken = this.setToken.bind(this);
     }
 
+    // setToken(){
+    //     return this.setState({token: localStorage.getItem('jwt')});
+    // }
+    
     async getCustomerList(){
-        const customerList = await axios.get(apiUrl+'customer', { headers: {'Access-Control-Allow-Origin' : true, 'Content-Type':'application/json' } });
+        // this.setState({token: localStorage.getItem('jwt')});
+        // console.log('local token', localStorage.getItem('jwt'));
+        // console.log('tokennnnnn', this.state.token);
+        const customerList = await axios.get(apiUrl+'customer', 
+        { headers: this.headers });
         return customerList;
     }
 
-    setToken(){
-        return this.setState({token: localStorage.getItem('jwt')});
-    }
-    
-    
-    // async addNewCustomer(customer){
-    //     // this.setState({token: localStorage.getItem('token')})
-    //     // console.log(this.state.token);
-    //     return await axios.post(apiUrl+'customer/add', customer, 
-    //             { headers: {
-    //                         'Content-Type':'application/json', 
-    //                         // 'authorization': `Bearer ${localStorage.getItem('jwt')}` 
-    //                         } 
-    //             }
-    //         ).then((res)=>{
-    //             console.log('add res', res.data);
-    //         }).catch((err)=>{
-    //             console.log('add err', err);
-    //         });
-    // }
 
     async GetCustomerById(id){
-        const customer = await axios.get(apiUrl+`customer/${id}`, { headers: {'Access-Control-Allow-Origin' : true, 'Content-Type':'application/json' } } )
+        const customer = await axios.get(apiUrl+`customer/${id}`, { headers: this.headers } )
         return customer.data;
     }
-    // async UpdateCustomer(id){
-    //     const customer = await axios.put(apiUrl+'customer/update')
-    // }
+    async UpdateCustomer(id, obj){
+        const customer = await axios.put(apiUrl+`customer/update/${id}`, obj, { headers: this.headers } )
+        return customer;
+    }
+    async DeleteCustomer(id){
+        return await axios.delete(apiUrl+`customer/del/${id}`, { headers: this.headers })
+    }
 }

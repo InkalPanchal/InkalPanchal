@@ -17,11 +17,15 @@ root.render(
       <Routes>
         <Route path='/' element={<App />}>
           <Route path='login' element={<Login />}></Route>
-          <Route path='customer' element={ <Customer />}>
+          {localStorage.getItem('jwt') &&
+              <>
+                <Route path='customer' element={ <Customer />} />
+                <Route path='customer/addCustomer' element={<AddCustomer />}></Route>
+                <Route path='customer/editCustomer/:id' element={<EditCustomer />}></Route>
+              </>
+          }
+          {!localStorage.getItem('jwt') && <Route path='login' element={<Login />}></Route> }
           </Route>
-            <Route path='customer/addCustomer' element={<AddCustomer />}></Route>
-            <Route path='customer/editCustomer/:id' element={<EditCustomer />}></Route>
-        </Route>
       </Routes>
     </BrowserRouter>
   </React.StrictMode>

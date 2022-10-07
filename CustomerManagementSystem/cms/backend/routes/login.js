@@ -50,29 +50,8 @@ var users = {};
                             }); 
 
             if(loginData.username === users.username && loginData.password === users.password){
-                // fs.writeFile('./Authentication/token.txt', token, (err,data)=>{
-                //     if(err) console.log(err.message);
-                //     if(data){
-                //         console.log("Token stored!");
-                //     }
-                // });
-                // res.status(200).json(
-                //     {
-                //         message:"logged in as admin.", 
-                //         jwtToken: token
-                //     });
-                let options = {
-                    httpOnly: true,
-                    maxAge: 1000 * 60 * 15, //expires in 15 minutes
-                }
-                // res.setHeader('token', token);
-                // console.log(res.getHeader('token'));
-                res.setHeader('authorization', token);
-                console.log('headers',res.getHeaders())
-                // document.cookie('Jwttoken', token, options);
-                // res.status(200).cookie('Jwttoken', token, options).json({message:'Logged in successfully.', token:token});
-                res.status(200).json({message:'Logged in successfully.', token:token});
-
+                res.status(200).json({message:'Logged in successfully.', token:`Bearer ${token}`});
+                res.end();
 
             }else {
                 res.status(404).json("Wrong credentials!");

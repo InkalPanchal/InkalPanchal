@@ -1,11 +1,16 @@
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min.js'
-import { NavLink, Outlet } from 'react-router-dom'
+import { NavLink, Outlet, useNavigate } from 'react-router-dom'
 import * as Icon from 'react-bootstrap-icons'
 
 
 function App() {
+  let navigate = useNavigate();
+  function logout(){
+    localStorage.removeItem('jwt');
+    navigate('/')
+  }
   return (
     <div className="">
       <nav className="px-3 navbar navbar-expand-lg navbar-light bg-dark">
@@ -35,10 +40,11 @@ function App() {
                   </div>
                 </a>
               </li>
-              <li className="nav-item">
+              {localStorage.getItem('jwt') ? <li className="nav-item">
                 {/* <a className="nav-link active" aria-current="page" href="/">Home</a> */}
-                <NavLink to='/login' className='text-decoration-none nav-link text-light'><Icon.DoorOpen></Icon.DoorOpen> Logout</NavLink>
-              </li>
+                <a  className='text-decoration-none nav-link text-light' onClick={logout}><Icon.DoorOpen></Icon.DoorOpen> Logout</a>
+              </li> : <NavLink to='/login' className='text-decoration-none nav-link text-light' onClick={logout}><Icon.DoorOpen></Icon.DoorOpen> Login</NavLink>}
+              
             </ul>
           </div>
         </div>

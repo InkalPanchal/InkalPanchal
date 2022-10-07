@@ -3,16 +3,19 @@ pool.connect();
 
 class CustomerDomain {
     async getAllCutomers(req, res) {
-        // let result = (await pool.query('SELECT * FROM Customer')).rows;
-        // res.status(200).json(result);
+        
         pool.query('SELECT customerid, customername, emailaddress, phonenumber, gender, birthdate, streetaddress, city, state, country, pincode, addresstype FROM Customer', (err, result)=>{
-            if(err) throw err;
-            if(result.rowCount > 0){
+            if(err) console.log('err',err);;
+            if(result !== undefined){
                 console.log('result', result.rows);
-                res.status(200).json(result.rows);
-            }else {
-                res.status(404).json("Data is empty.")
-            }
+                // if(res.headerSent !== true){
+                    res.status(200).send(result.rows);
+                // }
+                // res.send(result.rows)
+                
+            } else {res.status(404).json("Data is empty.")}
+                // res.end();
+            
         })  
     };
 
@@ -71,7 +74,8 @@ class CustomerDomain {
 
         pool.query(text, values, (err, results)=>{
             if(err) console.log(err.message);
-            if(results.rowCount > 0){
+            console.log(results);
+            if(results !== undefined){
                 console.log('results', results);
                 res.status(200).json({message: `Customer with id ${id} is modified.`});
             }else {
