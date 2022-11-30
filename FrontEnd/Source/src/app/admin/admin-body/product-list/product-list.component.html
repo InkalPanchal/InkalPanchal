@@ -1,0 +1,120 @@
+
+<section class="h-50 ">
+    <div class="container">
+        <div class="row">
+            <div class="col"> 
+                <div class="card" >
+                    <div class="card-header">
+                        <ng-container *ngIf="this.close == true;else secondName">
+                            <h4 class="fs-5 mb-0 p-2" (click)="this.close = true">Products</h4>
+                        </ng-container>
+                        <ng-template #secondName>
+                            <ng-container>
+                                <h4 class="fs-5 mb-0 p-2" (click)="this.close = true" >Edit Product</h4>
+                            </ng-container>
+                        </ng-template>
+                    </div>
+
+                <!-- form for update product -->
+                <div *ngIf="openEditForm">
+                    
+                    <div>
+                        <form [formGroup]="productForm" class="p-4">
+                    
+                            <div class="d-flex">
+                                <div class="w-100">
+                                    <label for="productName form-label">Product Name</label>
+                                </div>
+                                <div>
+                                    <button class="close border-0 bg-light mb-2 ms-auto rounded" (click)="this.openEditForm = false"><span (click)="this.close = true">&times;</span></button>
+                                </div>
+                            </div>
+                                <input type="text" formControlName="productName" class="form-control my-2" placeholder="Enter new Product"><br>
+                            <label for="price form-label">Price</label>
+                            <input type="number" formControlName="productPrice" class="form-control my-2" placeholder="Enter product's price"><br>
+                    
+                            <label for="Status form-label">Status</label>
+                            <input type="text" formControlName="availability" class="form-control my-2 mb-0" placeholder="Enter product's status"><br>
+                    
+                            
+                            <div class="d-flex w-100 mt-0">
+                                <div class="w-30 ms-0">
+                                    <label for="Quantity form-label">Quantity</label>
+                                    <input type="number" min="0" formControlName="quantity" class="form-control my-2" placeholder="Enter product's quantity">
+                                </div>
+                            </div>
+                    
+                            <div class="d-flex w-100 mt-0">
+                                <div class="w-30 ms-0">
+                                    <label for="mainCategory">Main Category</label>
+                                    <select  class="form-select my-2" (change)="getSubCategories($event)">
+                                        <option value="" selected disabled class="text-muted"> Select Main Category </option>
+                                        <ng-container *ngFor="let item of parentCategories" >
+                                            <option value="{{item.categoryId}}" >{{item.categoryName}}
+                                            </option>
+                                        
+                                        </ng-container>
+                                    </select>
+                                </div>
+                                <div class="w-30">
+                                    <label for="Category">Category</label>
+                                    <select class="form-select my-2" (change)="getSubSubCategory($event)">
+                                        <option value="" selected disabled class="text-muted"> Select Category </option>
+                                        <ng-container *ngFor="let i of subCategories">
+                                            <option value="{{i.categoryId}}">{{i.categoryName}}</option>
+                                        </ng-container>
+                                    </select>
+                                </div>
+                                <div class="w-30">
+                                    <label for="SubCategory">SubCategory</label>
+                                    <select class="form-select my-2" formControlName="productCategoryId">
+                                        <option value="" selected disabled class="text-muted"> Select SubCategory </option>
+                                        <ng-container *ngFor="let i of subSubCategories">
+                                            <option value="{{i.categoryId}}">{{i.categoryName}}</option>
+                                        </ng-container>
+                                    </select>
+                                </div>
+                            </div>
+                           <button type="button" name="button" (click)="updateProduct()" class="btn btn-outline-primary mb-2" style="line-height: 20px;">Update</button>
+                        </form>
+                    </div> 
+                </div>
+                <div class="" *ngIf="this.close == true">     
+                    <table class="table table-striped">
+                        <caption></caption>
+                        <thead class="position-sticky ">
+                            <tr >
+                                <th class="ps-5">Products</th>
+                                <th>Price</th>
+                                <th>Status</th>
+                                <th>Quantity</th>
+                                <th>PoductCategory</th>
+                                <th>Brand</th>
+                                <th></th>
+                                <th></th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                            <!-- <tr *ngFor="let item of products | paginate: { itemsPerPage:6, currentPage: p }" > -->
+                            <tr *ngFor="let item of products" >
+                                <td class="ps-5 " style="width: 30%;">{{item.productName}}</td>
+                                <td class="">{{item.productPrice}}</td>
+                                <td class="">{{item.availability}}</td>
+                                <td class="">{{item.quantity}}</td>
+                                <td class="">{{item.productCategory.categoryName}}</td>
+                                <td class="">{{item.brand.brandName}}</td>
+                                <td class="d-none">{{item.size}}</td>
+                                
+
+                                <td><button type="button" name="button" class="btn btn-outline-success" (click)="editProduct(item)">Edit</button></td>
+                                <td><button type="button" name="button" class="btn btn-outline-danger" (click)="deleteProduct(item.categoryId)">Delete</button></td> 
+                            </tr>
+                            <!-- <pagination-controls (pageChange)="p = $event" ></pagination-controls> -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

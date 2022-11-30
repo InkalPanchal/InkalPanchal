@@ -1,0 +1,14 @@
+<div *ngFor="let i of categories; let j = index">
+    <h4>
+        <em class="fa fa-plus" (click)="getSubSubCategories(i.categoryId)"></em>
+        {{i.categoryName}}
+    </h4>
+    <ul *ngFor="let item of subsubCategories">
+        <ng-container *ngIf="i.categoryId == item.parentCategory">
+
+            <li>{{item.categoryName}}</li>
+        </ng-container>
+        
+    </ul>
+    
+</div>

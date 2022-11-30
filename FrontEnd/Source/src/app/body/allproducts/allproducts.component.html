@@ -1,0 +1,12 @@
+<app-header></app-header>
+<div class="m-5">
+    <div class="row row-cols-4 border align-content-center justify-center">
+        <ng-container *ngFor="let i of productList">
+            <div class="card rounded-0 border col m-2 h-50" [routerLink]="['/product', i.productId]">
+                <img src="{{i.productImages[0].imageUrl}}" alt="" width="200" height="200">
+                <h2 class="text-wrap h4">{{i.productName}}</h2>
+                <p>Rs. {{i.productPrice}}</p>
+                <span class="border" style="width: 80px; height:20px;">37% OFF</span> 
+            </div>
+        </ng-container>
+    </div>

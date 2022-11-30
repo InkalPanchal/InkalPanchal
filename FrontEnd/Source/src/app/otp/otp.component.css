@@ -1,0 +1,67 @@
+* {
+    box-sizing: border-box;
+    -webkit-text-size-adjust: 100%;
+    -webkit-tap-highlight-color: transparent;
+    color: #000000;
+    -webkit-font-smoothing: subpixel-antialiased;
+    margin: 0;
+    border: 0;
+    font: inherit;
+}
+#login-register-modal {
+    z-index: 95;
+    width: 726px;
+    height: 360px;
+    border-radius: 5px;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    background-position: 0 0;
+    margin: auto;
+    background-repeat: no-repeat;
+    background-color: #edf1f4;
+    position: absolute;
+}
+.userAuthIcons {
+    background-image: url(../../assets/userAuthSpritev3.png);
+    vertical-align: sub;
+    display: inline-block;
+}
+.mngorder .userAuthIcons {
+    padding: 0;
+    border: 0;
+    vertical-align: sub;
+    display: inline-block;
+    height: 63px;
+    width: 65px;
+    float: left;
+    margin-right: 15px;
+    margin-top: -7px;
+    background-position: 4px 116px;
+}
+.mngFont {
+    font-size: 75%;
+    font-weight: 400;
+    opacity: 90%;
+    margin-bottom: 2px;
+}
+.trOrd {
+    font-size: 80%;
+    opacity: 60%;
+    width: 50%;
+}
+.shortlistitm .userAuthIcons {
+    padding: 0;
+    background-image: url("../../assets/userAuthSpritev3.png");
+    vertical-align: sub;
+    display: inline-block;
+    height: 63px;
+    width: 65px;
+    float: left;
+    margin-right: 15px;
+    margin-top: -7px;
+    background-position: -59px 116px;
+}
+
+

@@ -1,0 +1,77 @@
+<section class="h-50 ">
+    <div class="container ">
+        <div class="row">
+            <div class="col overflow-y-auto">
+                <div class="card " >
+                    <div class="card-header">
+                        <ng-container *ngIf="this.close == true;else secondName">
+                            <h4 class="fs-5 mb-0 p-2" (click)="this.close = true">Latest Categories</h4>
+                        </ng-container>
+                        <ng-template #secondName>
+                            <ng-container>
+                                <h4 class="fs-5 mb-0 p-2" (click)="this.close = true" >Edit Category</h4>
+                            </ng-container>
+                        </ng-template>
+                    </div>
+
+                    <!-- form for update category -->
+                    <div *ngIf="openEditForm">
+                        <div class="d-flex">
+                            <button class=" border-0 bg-light ms-auto rounded me-3 mt-3 p-0 fa fa-close" (click)="this.openEditForm = false"><span (click)="this.close = true"></span></button>
+                        </div>
+                        <div>
+                            <form [formGroup]="CategoryForm" class="p-4" >
+                        
+                                <label for="categoryName form-label">Category Name</label>
+                                <input type="text" formControlName="categoryName" class="form-control my-2" placeholder="Enter Category"><br>
+                        
+                                <label for="parentCategory form-label">Parent Category</label><br>
+                                <select name="parentCategory" id="parentCategory" formControlName="parentCategory" class="form-select" placeholder="select">
+                                    <ng-container *ngFor="let item of categories">
+                                        <option value="{{item.categoryId}}">{{item.categoryName}}</option>   
+                                    </ng-container>
+                                </select><br>
+                                <button type="button" name="button" (click)="updateCategory()" class="btn btn-primary mb-2" style="line-height:20px;">Update</button>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="" *ngIf="this.close == true">
+                        <div class="d-md-flex d-sm-block overflow-y-auto">
+                            <div>
+                                <table class="table table-striped table-responsive">
+                                    <caption></caption>
+                                    <thead>
+                                        <tr *ngFor="let i of parentCategories">
+                                            <th (click)="showSubCat(i.categoryId)" class="p-3 px-4 ps-5 fs-5 fw-semibold w-50" style="cursor: pointer;">{{i.categoryName}}</th>
+                                            <td class="w-25 text-center"><button class="btn btn-outline-dark" (click)="editCategry(i)">Edit</button></td>
+                                            <td class="w-25 text-center"><button class="btn btn-outline-dark" (click)="deleteCategry(i.categoryId)">Delete</button></td>
+                                        </tr>
+                                    </thead>
+                                </table>
+                            </div>
+
+                            <div class="d-sm-block">
+                                <table class="table table-responsive " >
+                                    <caption class="caption-top"></caption>
+                                    <thead *ngIf="this.show">
+                                        <tr (click)="refresh()" class="ps-4 fs-4 " style="cursor: pointer;">
+                                            <th>SubCategories</th>
+                                        </tr>
+                                    </thead>
+                                    <hr style="margin-top: 17px; margin-bottom:4px;">
+                                    <tbody>
+                                        <tr *ngFor="let item of subCategories">
+                                            <td class="p-3" (click)="showSubCat(item.categoryId)" style="cursor: pointer;">{{item.categoryName}}</td>
+                                            <td class="text-center"><button class="btn btn-sm btn-outline-success px-4" (click)="editCategry(item)">Edit</button></td>
+                                            <td class="text-center"><button class="btn btn-sm btn-outline-danger px-3" (click)="deleteCategry(item.categoryId)">Delete</button></td>   
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

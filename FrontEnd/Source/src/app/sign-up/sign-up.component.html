@@ -1,0 +1,110 @@
+
+<div id="login-register-modal" class="userAuthIcons">
+    
+    <ul class="listAuthModal list-unstyled m-5 mx-4 p-3">
+        <li class="mngorder ">
+            <em class="userAuthIcons"></em>
+            <h4 class="mngFont">MANAGE YOUR ORDERS</h4>
+            <p class="trOrd">Track orders, manage cancellations &amp; returns.</p>
+        </li>
+        <li class="shortlistitm my-5 mx-0">
+            <em class="userAuthIcons"></em>
+            <h4 class="mngFont">SHORTLIST ITEMS YOU LOVE</h4>
+            <p class="trOrd">Keep items you love on a watchlist.</p>
+        </li>
+        <li class="offrupdate">
+            <em class="userAuthIcons"></em>
+            <h4 class="mngFont">AWESOME OFFERS UPDATES FOR YOU</h4>
+            <p class="trOrd">Be first to know about great offers and save.</p>
+        </li>
+    </ul>
+    <div class="userAuth-card ">
+        <div class="">
+
+            <div class="p-0">
+                <div class="d-flex">
+                    <header class="fs-5 fw-normal">SignUp On Snapdeal</header>
+                    <div class="d-inline">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-lg ms-5 mat-stroked-button" (click)="closeModal()" viewBox="0 0 16 16">
+                            <path d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8 2.146 2.854Z"/>
+                        </svg>
+                    </div>
+                </div>
+                
+                
+                <p class="py-2 my-2 mb-3 paraText">Please provide your Mobile Number or Email to Login/ Sign Up on Snapdeal</p>
+                <form class="form" [formGroup]="singUpForm" (ngSubmit)="onSubmit()">
+                    
+                    <div class="mb-3">
+                        <div class="loginForm border border-1">
+                            <input type="number" formControlName="PhoneNumber" class="form-control py-2 " placeholder="Mobile Number">
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <div class="loginForm border border-1 ">
+                            <input type="email" formControlName="EmailAddress" class="form-control py-2" placeholder="Email Address">
+                        </div>
+                        <div *ngIf="Email.invalid && (Email.touched || Email.dirty)">
+                            <div *ngIf="Email.errors?.['required'];">
+                                <p class="text-danger" style="font-size: 13px;">Please enter your email.</p>
+                            </div>
+                            <div *ngIf="Email.errors?.['email']">
+                                <p class="text-danger mt-1" style="font-size: 13px;">Please enter a valid email.</p>
+                            </div>
+                        </div>
+                    </div> 
+                    <div class="mb-3">
+                        <div class="loginForm border border-1 ">
+                            <input type="text" formControlName="UserName" class="form-control py-2" placeholder="UserName" required>
+                        </div>
+                        <div *ngIf="getUsername.invalid && (getUsername.touched || getUsername.dirty)" >
+                            <div *ngIf="getUsername.errors?.['required'];">
+                                <p class="text-danger" style="font-size: 13px;">Please enter your name.</p>
+                            </div>
+                            <div *ngIf="getUsername.errors?.['minlength']">
+                                <p class="text-danger mt-1" style="font-size: 13px;">Please enter a valid name.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="loginForm border border-1 mb-3 ">
+                        <input type="text" formControlName="DateOfBirth" class="form-control py-2" onfocus="(this.type= 'date')"  placeholder="01/03/1999">
+                    </div>
+
+                    <div class="mb-3">
+                        <div class="loginForm border border-1">
+                            <input type="password" formControlName="Password" class="form-control py-2" placeholder="Password">
+                        </div>
+                        <div *ngIf="Password.invalid && (Password.touched || Password.dirty)">
+                            <div *ngIf="Password.errors?.['required'];">
+                                <p class="text-danger" style="font-size: 13px;">Please enter a password.</p>
+                            </div>
+                            <div *ngIf="Password.errors?.['minlength']">
+                                <p class="text-danger" style="font-size: 13px;">Please enter a valid password.</p>
+                            </div>
+                        </div>
+                        <div>
+                            <p class="text-muted mt-1" style="font-size: 11px;">Password should have a minimum of 6 characters, at least 1 numeric and 1 alphabet.</p>
+                        </div>
+                    </div>
+
+                    <button class="text-uppercase lett btn contnuBtn w-100 fw-bold" type="submit" (click)="SignUp()" [disabled]="singUpForm.invalid">Continue</button>
+                    
+                    
+
+                </form>
+            </div>
+            
+        </div> 
+        <div class="d-block mt-5">
+            <div>
+                <p class="text-muted text-center orLogin mb-3">or Login Using</p>
+                <button class="gglBtn bg-light d-flex"> 
+                    <img src="../../assets/google-color-icon.svg" class="my-auto" alt="" width="18" height="18"> 
+                    <span class="mx-auto fw-light text-muted gglText">Google</span>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+<router-outlet></router-outlet>

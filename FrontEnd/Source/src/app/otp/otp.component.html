@@ -1,0 +1,46 @@
+<div id="login-register-modal" class="userAuthIcons">
+    
+    <ul class="listAuthModal list-unstyled m-5 mx-4 p-3">
+        <li class="mngorder ">
+            <em class="userAuthIcons"></em>
+            <h4 class="mngFont">MANAGE YOUR ORDERS</h4>
+            <p class="trOrd">Track orders, manage cancellations &amp; returns.</p>
+        </li>
+        <li class="shortlistitm my-5 mx-0">
+            <em class="userAuthIcons"></em>
+            <h4 class="mngFont">SHORTLIST ITEMS YOU LOVE</h4>
+            <p class="trOrd">Keep items you love on a watchlist.</p>
+        </li>
+        <li class="offrupdate">
+            <em class="userAuthIcons"></em>
+            <h4 class="mngFont">AWESOME OFFERS UPDATES FOR YOU</h4>
+            <p class="trOrd">Be first to know about great offers and save.</p>
+        </li>
+    </ul>
+    <div class="userAuth-card py-5">
+        <div class="">
+            <div class="p-0">
+                <div class="d-flex">
+                    <header class="fs-5 fw-normal">Login On Snapdeal</header>
+                    <div class="d-inline">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-lg" (click)="CloseDialog()" viewBox="0 0 16 16">
+                            <path d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8 2.146 2.854Z"/>
+                        </svg>
+                    </div>
+                </div>
+                
+                <em class="otpIcon userAuthIcons"></em>
+                <p class="py-2 my-2 mb-3 paraText">Please enter verification code (OTP) sent to: {{mobileNo}}</p>
+                <form class="form" [formGroup]="otpForm" >
+                    <div class="loginForm border border-1 mb-3">
+                        <input type="text" class="form-control py-2 text-center" formControlName="Otp" placeholder="Code">
+                    </div>
+                    <p class="text-muted text-center orLogin mb-3" (click)="submitOtp()">Resend OTP</p>
+
+                    <button class="text-uppercase lett btn contnuBtn w-100 fw-bold" type="submit" (click)="submitOtp()">Continue</button>
+                </form>
+            </div>
+            
+        </div> 
+    </div>
+</div>

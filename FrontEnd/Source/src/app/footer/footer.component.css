@@ -1,0 +1,101 @@
+#sdFooter {
+    -webkit-text-size-adjust: 100%;
+    -webkit-tap-highlight-color: transparent;
+    color: #000000;
+    box-sizing: border-box;
+    -webkit-font-smoothing: subpixel-antialiased;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font: inherit;
+    vertical-align: baseline;
+    position: relative;
+    clear: both;
+    z-index: 53;
+    width: 100%;
+    background-color: #fff;
+    border-top: 1px solid #e2e2e2;
+}
+
+#sdFooter > div.borderBottom {
+    -webkit-text-size-adjust: 100%;
+    -webkit-tap-highlight-color: transparent;
+    color: #000000;
+    box-sizing: border-box;
+    -webkit-font-smoothing: subpixel-antialiased;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font: inherit;
+    vertical-align: baseline;
+    border-bottom: 1px solid #e2e2e2;
+    line-height: 20px;
+}
+
+#sdFooter > div.middleContent-footer {
+    -webkit-text-size-adjust: 100%;
+    -webkit-tap-highlight-color: transparent;
+    color: #000000;
+    box-sizing: border-box;
+    -webkit-font-smoothing: subpixel-antialiased;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font: inherit;
+    vertical-align: baseline;
+    line-height: 20px;
+    background-color: #fff;
+}
+#sdFooter > div.borderBottom > div {
+    -webkit-text-size-adjust: 100%;
+    -webkit-tap-highlight-color: transparent;
+    color: #000000;
+    box-sizing: border-box;
+    -webkit-font-smoothing: subpixel-antialiased;
+    padding: 0;
+    border: 0;
+    font: inherit;
+    vertical-align: baseline;
+    margin: 0 4%;
+    line-height: 20px;
+    background-color: #fff;
+    max-width: 1600px;
+    min-width: 1024px;
+    
+}
+#sdFooter > div.borderBottom > div > a:nth-child(1) {
+    -webkit-text-size-adjust: 100%;
+    -webkit-tap-highlight-color: transparent;
+    box-sizing: border-box;
+    -webkit-font-smoothing: subpixel-antialiased;
+    background-color: transparent;
+    color: #337ab7;
+    text-decoration: none;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font: inherit;
+    vertical-align: baseline;
+}
+
+#sdFooter > div.borderBottom > div > a:nth-child(1) > div {
+    -webkit-text-size-adjust: 100%;
+    -webkit-tap-highlight-color: transparent;
+    color: #337ab7;
+    -webkit-font-smoothing: subpixel-antialiased;
+    margin: 0;
+    border: 0;
+    font: inherit;
+    vertical-align: baseline;
+    position: relative;
+    min-height: 1px;
+    float: left;
+    width: 25%;
+    line-height: 20px;
+    border-right: 1px solid #e2e2e2;
+    padding: 26px 25px;
+    height: 200px;
+    box-sizing: border-box;
+    text-align: center;
+    border-left: 1px solid #e2e2e2;
+}

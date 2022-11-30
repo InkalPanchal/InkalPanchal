@@ -1,0 +1,8 @@
+select:hover {
+    cursor: pointer;
+}
+.w-30 {
+    width: 30% !important;
+    margin: 20px;
+    margin-top:0px ;
+}

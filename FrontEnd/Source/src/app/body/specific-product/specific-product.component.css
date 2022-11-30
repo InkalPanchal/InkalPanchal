@@ -1,0 +1,12 @@
+.addToCart {
+    display: block;
+    background-color: black;
+    color: #fff; 
+    width: 150px;
+}
+.buyBtn {
+    display: block;
+    background-color: rgb(214, 21, 86);
+    color: #fff; 
+    width: 150px;
+}

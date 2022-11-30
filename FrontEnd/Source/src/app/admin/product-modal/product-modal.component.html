@@ -1,0 +1,88 @@
+<!-- create modal for below form -->
+<div class="d-flex">
+    <h3 class="text-muted w-100">Add Product</h3>
+    <button class="close border-0 bg-light ms-auto rounded" (click)="closeModal()"><span>&times;</span></button>
+</div>
+<div>
+    <form [formGroup]="productForm">
+
+        <label for="productName form-label">Product Name</label>
+        <input type="text" formControlName="productName" class="form-control my-2" placeholder="Enter new Product"><br>
+
+        <label for="price form-label">Price</label>
+        <input type="number" formControlName="productPrice" class="form-control my-2" placeholder="Enter product's price"><br>
+
+        <label for="Status form-label">Status</label>
+        <input type="text" formControlName="availability" class="form-control my-2 mb-0" placeholder="Enter product's status"><br>
+
+        
+        <div class="d-flex w-100 mt-0">
+            <div class="w-30 ms-0">
+                <label for="Quantity form-label">Quantity</label>
+                <input type="number" min="0" formControlName="quantity" class="form-control my-2" placeholder="Enter product's quantity">
+            </div>
+            <div class="w-30">
+                <label for="color form-label">Color</label><br>
+                <select formControlName="color" class="form-select my-2" >
+                    <option value="" selected disabled class="text-muted"> Select Color </option>
+                    <ng-container *ngFor="let i of colorAttributes" >
+                        <option value="{{i.attributeId}}">{{i.attributesValue}}</option>
+                    </ng-container>
+                </select>
+            </div>
+            
+            <div class="w-30 me-0">
+                <label for="size form-label">Size</label>
+                <select formControlName="size" class="form-select my-2" >
+                    <option value="" selected disabled class="text-muted"> Select Size </option>
+                    <ng-container *ngFor="let i of sizeAttributes" >
+                        <option value="{{i.attributeId}}">{{i.attributesValue}}</option>
+                    </ng-container>
+                </select>
+            </div>
+        </div>
+
+        <div class="d-flex w-100 mt-0">
+            <div class="w-30 ms-0">
+                <label for="mainCategory">Main Category</label>
+                <select  class="form-select my-2" (change)="getSubCategories($event)">
+                    <option value="" selected disabled class="text-muted"> Select Main Category </option>
+                    <ng-container *ngFor="let item of parentCategories" >
+                        <option value="{{item.categoryId}}" >{{item.categoryName}}
+                        </option>
+                    
+                    </ng-container>
+                </select>
+            </div>
+            <div class="w-30">
+                <label for="Category">Category</label>
+                <select class="form-select my-2" (change)="getSubSubCategory($event)">
+                    <option value="" selected disabled class="text-muted"> Select Category </option>
+                    <ng-container *ngFor="let i of subCategories">
+                        <option value="{{i.categoryId}}">{{i.categoryName}}</option>
+                    </ng-container>
+                </select>
+            </div>
+            <div class="w-30">
+                <label for="SubCategory">SubCategory</label>
+                <select class="form-select my-2" formControlName="productCategoryId">
+                    <option value="" selected disabled class="text-muted"> Select SubCategory </option>
+                    <ng-container *ngFor="let i of subSubCategories">
+                        <option value="{{i.categoryId}}">{{i.categoryName}}</option>
+                    </ng-container>
+                </select>
+            </div>
+        </div>
+
+        <label for="brand">Brand</label>
+        <select name="" id="" formControlName="brandId" class="form-select my-2">
+            <option value="" selected disabled class="text-muted">Select Brand</option>
+            <ng-container *ngFor="let i of brands">
+                <option value="{{i.brandId}}">{{i.brandName}}</option>
+            </ng-container>
+        </select>
+        
+       <button type="button" name="button" (click)="addProduct()" class="btn btn-primary mb-2" style="line-height:20px;">Post</button>
+       <!-- <button type="button" name="button" (click)="updateProduct()" class="btn btn-outline-primary mb-2 ms-3" style="line-height: 20px;">Update</button> -->
+    </form>
+</div>

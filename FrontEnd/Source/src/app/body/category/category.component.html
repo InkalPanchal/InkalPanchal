@@ -1,0 +1,64 @@
+<div class="h-auto border-0 category position-relative" >
+    <div class="card shadow border-0 " class="dropend">
+        <div>
+            <ul class="list-unstyled p-3 pb-0">
+                <div class="text-uppercase pb-2">Top Categories</div>
+                    <ng-container *ngFor="let item of categories" >
+                        <ng-container *ngIf="item.parentCategory == null">
+                            <div class="d-flex dropend">
+                                <li class="py-1 dropdown-toggle" data-bs target="#firstList" data-bs-toggle="dropdown" data-bs-hover="dropdown" aria-expanded="false" style="font-size:small;" (click)="getSubCategories(item.categoryId)">{{item.categoryName}} </li>
+                                    <div class="dropdown-menu" id="firstList">
+                                        <ng-container *ngFor="let i of subCategories">
+                                            <div class="w-50">
+
+                                                <div class="">
+                                                    <h5 class="p-1 " href="#secondList" data-bs-toggle="collapse" aria-expanded="false" aria-controls="secondList" style="font-size:small;" (click)="getSubSubCategories(i.categoryId)">{{i.categoryName}}</h5>
+                                                </div>
+                                                <div class="position-absolute bg-light rounded ms-2 p-2 border" style="left: 150px; top:0px; width: 100px;" id="secondList">
+                                                    <ng-container *ngFor="let items of subSubCategories">
+                                                        <h5 [routerLink]="['/allProducts']">{{items.categoryName}}</h5>
+                                                    </ng-container>
+                                                </div>
+                                            </div>
+                                        </ng-container>    
+                                    </div>
+                                    
+                                </div>
+                            </ng-container>
+                        </ng-container>
+                        
+                    </ul>
+                    
+                    
+            </div>
+
+        <div class="px-3">
+            <div class="text-uppercase py-2">More Categories</div>
+            <ul class="list-unstyled">
+                <li class="py-1" style="font-size:small;">Automotives</li>
+                <li class="py-1" style="font-size:small;">Mobile & Accessories</li>  
+                <li class="py-1" style="font-size:small;">Electronics</li>  
+                <li class="py-1" style="font-size:small;">Sports, Fitness & Outdoor</li>  
+                <li class="py-1" style="font-size:small;">Computers & Gaming</li>  
+                <li class="py-1" style="font-size:small;">Books, Media & Music</li>  
+                <li class="py-1" style="font-size:small;">Hobbies</li>  
+            </ul>
+        </div>
+
+        <div class="px-3">
+            <div class="text-uppercase py-2">Trending Searches</div>
+            <ul class="list-unstyled">
+                <li class="py-1" style="font-size:small;">Men's Shoes</li>
+                <li class="py-1" style="font-size:small;">Women's Footwear</li>  
+                <li class="py-1" style="font-size:small;">Asian Shoes</li>  
+                <li class="py-1" style="font-size:small;">UrbanMark</li>  
+                <li class="py-1" style="font-size:small;">Men's Shirts</li>  
+            </ul>
+
+        </div>
+
+    </div>
+    <div class="mt-4">
+        <img src="../../../assets/barcode.png" alt="">
+    </div>
+</div>

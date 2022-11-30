@@ -1,0 +1,25 @@
+<!-- <pagination-controls (pageChange)="p = $event"></pagination-controls> -->
+
+<div class="m-5">
+    <table class="table ">
+        <caption></caption>
+        <thead>
+            <tr class="row">
+                <th class="col-4">BrandId</th>
+                <th class="col-4">BrandName</th>
+                <th class="col-4">Logo</th>
+                <!-- <th>description</th> -->
+            </tr>
+        </thead>
+        <tbody>
+            <!-- <tr *ngFor="let i of brandList | paginate:{itemsPerPage:5, currentPage: p}" class="row"> -->
+                <tr *ngFor="let i of brandList ">
+                <td class="col-4">{{i.brandId}}</td>
+                <td class="col-4">{{i.brandName}}</td>
+                <td class="col-4"><img src="{{i.brandLogo}}" alt=""></td>
+                <!-- <td>{{i.description}}</td> -->
+            </tr>
+        </tbody>
+    </table>
+    
+</div>
