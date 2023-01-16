@@ -52,7 +52,7 @@ namespace Snapdeal.Controllers
         [Authorize(Roles = "admin")]
         public async Task<IActionResult> Put(int id, [FromBody] Customer customer)
         {
-            return Ok(await CustomerService.Update(id, customer));
+            return Ok(await CustomerService.Update(id, customer)) ;
         }
 
         // DELETE api/<CategoryController>/5
